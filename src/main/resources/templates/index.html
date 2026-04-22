@@ -1,0 +1,23 @@
+BIT235 Object Oriented Programming. 2026 Sem 1 Page 2 of 10
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hello Page</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #eef2f3;
+text-align: center;
+margin-top: 60px;
+}
+h1 { color: #2c3e50; }
+p { color: #34495e; }
+</style>
+</head>
+<body>
+<h1>Hello Page</h1>
+<!-- Thymeleaf replaces this text -->
+<p th:text="${helloMsg}">Hello World (default text)</p>
+</body>
+</html>
