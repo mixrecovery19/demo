@@ -1,4 +1,4 @@
-package com.bit235.springtime;
+package com.bit235.springtime;//could or maybe should rename springtime to controller
 
 public class User {
 private String username;
