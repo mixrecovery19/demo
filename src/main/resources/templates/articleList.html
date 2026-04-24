@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quotes from History</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title>
 </head>
 <body>
-<div id="container" th:utext="${FillMeUp}"></div>
+
+<h1>Articles</h1>
+
+<p th:if="${user != null}">
+    Welcome, <span th:text="${user != null ? user.username : 'Guest'}"></span>
+</p>
+
+<!-- 🔹 Create Article Button -->
+<form action="/articles/new" method="get">
+    <button type="submit">Create Article</button>
+</form>
+
+<br>
+
+<a href="/">Back to Home</a>
+
 </body>
 </html>

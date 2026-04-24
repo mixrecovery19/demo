@@ -37,6 +37,13 @@
     Logged in as: <span th:text="${user.username}"></span>
 </p>
 
+<!-- 🔹 NAVIGATION (ONLY WHEN LOGGED IN) -->
+<div th:if="${user != null}">
+    <form action="/articles" method="get">
+        <button type="submit">Articles</button>
+    </form>
+</div>
+
 <br>
 
 <form action="/login" method="get">
