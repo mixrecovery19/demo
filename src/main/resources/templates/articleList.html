@@ -4,23 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles</title>
+    <link rel="stylesheet" href="/css/stylesArticleList.css">
 </head>
+
 <body>
 
-<h1>Articles</h1>
+<div class="container">
 
-<p th:if="${user != null}">
-    Welcome, <span th:text="${user != null ? user.username : 'Guest'}"></span>
-</p>
+    <h1>Articles</h1>
 
-<!-- 🔹 Create Article Button -->
-<form action="/articles/new" method="get">
-    <button type="submit">Create Article</button>
-</form>
+    <!-- 🔹 User Status -->
+    <p th:if="${user == null}" class="logged-out">
+        Logged out
+    </p>
 
-<br>
+    <p th:if="${user != null}" class="logged-in">
+        Logged in as: <span th:text="${user?.username}"></span>
+    </p>
 
-<a href="/">Back to Home</a>
+    <!-- 🔹 Article Actions -->
+    <div th:if="${user != null}" class="button-group">
+        <form action="/articles/new" method="get">
+            <button type="submit" class="btn-primary">Create Article</button>
+        </form>
+    </div>
+
+    <!-- 🔹 Navigation -->
+    <div class="button-group">
+        <a href="/" class="btn-secondary link-button">Back to Home</a>
+    </div>
+
+</div>
 
 </body>
 </html>

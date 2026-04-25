@@ -6,35 +6,38 @@
     <title>Home</title>
     <link rel="stylesheet" href="/css/stylesHome.css">
 </head>
-<body>
+<body th:class="${user != null} ? 'logged-in-bg' : 'logged-out-bg'">
 
-<h1>Home Page</h1>
+<div class="container">
 
-<!-- Logged OUT -->
-<p th:if="${user == null}" class="logged-out">
-    Logged out
-</p>
+    <h1>Home Page</h1>
 
-<!-- Logged IN -->
-<p th:if="${user != null}" class="logged-in">
-    Logged in as: <span th:text="${user.username}"></span>
-</p>
+    <p th:if="${user == null}" class="logged-out">
+        Logged out
+    </p>
 
-<!-- 🔹 NAVIGATION (ONLY WHEN LOGGED IN) -->
-<div th:if="${user != null}">
-    <form action="/articles" method="get">
-        <button type="submit">Articles</button>
-    </form>
+    <p th:if="${user != null}" class="logged-in">
+        Logged in as: <span th:text="${user.username}"></span>
+    </p>
+
+    <!-- 🔹 Logged-in actions -->
+    <div th:if="${user != null}" class="button-group">
+        <form action="/articles" method="get">
+            <button type="submit" class="btn-primary">View Articles</button>
+        </form>
+    </div>
+
+    <!-- 🔹 Auth actions -->
+    <div class="button-group">
+        <form action="/login" method="get">
+            <button type="submit" class="btn-secondary">Login</button>
+        </form>
+
+        <form action="/logout" method="get">
+            <button type="submit" class="btn-danger">Logout</button>
+        </form>
+    </div>
+
 </div>
-
-<br>
-
-<form action="/login" method="get">
-    <button type="submit">Login</button>
-</form>
-<form action="/logout" method="get">
-    <button type="submit">Logout</button>
-</form>
-
 </body>
 </html>

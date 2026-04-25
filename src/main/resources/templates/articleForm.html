@@ -4,21 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Article</title>
+    <link rel="stylesheet" href="/css/stylesArticleForm.css">
 </head>
+
 <body>
 
-<h1>Create Article</h1>
+<div class="container">
 
-<form action="/articles/save" method="post">
-    <input type="text" name="title" placeholder="Title"><br><br>
-    <textarea name="content" placeholder="Content"></textarea><br><br>
+    <h1>Create Article</h1>
 
-    <button type="submit">Save Article</button>
-</form>
+    <!-- 🔹 User Status -->
+    <p th:if="${user == null}" class="logged-out">
+        Logged out
+    </p>
 
-<br>
+    <p th:if="${user != null}" class="logged-in">
+        Logged in as: <span th:text="${user.username}"></span>
+    </p>
 
-<a href="/articles">Back to Articles</a>
+    <!-- 🔹 Form -->
+    <form action="/articles/save" method="post" class="form-group">
+
+        <input type="text" name="title" placeholder="Title" required>
+
+        <textarea name="content" placeholder="Content" rows="6" required></textarea>
+
+        <button type="submit" class="btn-primary">Save Article</button>
+    </form>
+
+    <!-- 🔹 Navigation -->
+    <div class="button-group">
+        <a href="/articles" class="btn-secondary link-button">Back to Articles</a>   
+    </div>
+
+</div>
 
 </body>
 </html>

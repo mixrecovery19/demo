@@ -139,3 +139,62 @@ form:last-of-type {
 .button-group {
     margin-top: 20px;
 }
+/* 🔹 Form layout */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* 🔹 Inputs */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #dcdfe3;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-family: inherit;
+
+    outline: none;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 🔹 Focus effect */
+input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* 🔹 Error message */
+.error-message {
+    color: #e74c3c;
+    margin-top: 10px;
+    font-weight: 500;
+}
+/* 🔹 Make links look like buttons */
+.link-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+
+    text-align: center;
+    text-decoration: none;
+
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+
+    background-color: #95a5a6;
+    color: white;
+
+    transition: all 0.2s ease;
+}
+
+.link-button:hover {
+    background-color: #7f8c8d;
+}
