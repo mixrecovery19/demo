@@ -1,4 +1,4 @@
-package com.bit235.controller;
+/*package com.bit235.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,4 +10,4 @@ public String hello(Model model) {
 model.addAttribute("helloMsg", "BIT235 Spring Boot + Thymeleaf tutorial");
 return "hello"; // resolves to hello.html in templates/
 }
-}
+}*/

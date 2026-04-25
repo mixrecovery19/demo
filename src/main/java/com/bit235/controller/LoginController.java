@@ -12,14 +12,14 @@ import com.bit235.model.User;
 // setting a method to handle the home page, this is for the handle of the home page as well as login and logout while also setting the user name, password as well
 // as the session, allowing for us to store user information is important so we can "remember" and make it a far more personalised experience.
 @Controller
-public class FormController {
+public class LoginController {
     @GetMapping("/")
         public String home(Model model, HttpSession session) {
 
             User user = (User) session.getAttribute("user"); // get stored user
             model.addAttribute("user", user);
 
-            return "home";
+            return "index";
         }
 
     @GetMapping("/login")
