@@ -29,11 +29,11 @@
 
     <!-- 🔹 Auth actions -->
     <div class="button-group">
-        <form action="/login" method="get">
+        <form th:if="${user == null}" action="/login" method="get">
             <button type="submit" class="btn-secondary">Login</button>
         </form>
 
-        <form action="/logout" method="get">
+        <form th:if="${user != null}" action="/logout" method="get">
             <button type="submit" class="btn-danger">Logout</button>
         </form>
     </div>
