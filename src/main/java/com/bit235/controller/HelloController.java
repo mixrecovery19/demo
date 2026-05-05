@@ -1,3 +1,6 @@
+// commented out not using for the login part A. 
+// but possibly use later to avoid "weird" naming issues.
+
 /*package com.bit235.controller;
 
 import org.springframework.stereotype.Controller;
