@@ -31,7 +31,7 @@ public class LoginController {
         session.invalidate();   // 🔴 clears EVERYTHING in session
         return "redirect:/"; // send user back to login page
     }
-// PASSWORD J4vaCl4ss! USERNAME Michael - Nice and easy.
+// PASSWORD 123 USERNAME Michael - Nice and easy.
     @PostMapping("/login") // handles the login submissions etc. With Database or the like, possibly 3rd party oauth we could have more complex logic here
     // we could do things like create other folders, search database for user info, even apply API calls to 3rd party services for things like 2FA.
     public String handleLogin(User user, Model model, HttpSession session) {
