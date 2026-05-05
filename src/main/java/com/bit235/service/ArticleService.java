@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service
 public class ArticleService {
-
     
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final String FILE_PATH = "articles.json";

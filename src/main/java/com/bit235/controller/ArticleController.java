@@ -10,6 +10,7 @@ import com.bit235.model.Article;
 import com.bit235.model.User;
 import com.bit235.service.ArticleService;
 
+//article controller for article methods.
 @Controller
 public class ArticleController {
 
@@ -19,11 +20,11 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    // 🔹 Article list page
+    // method to show articles.
    @GetMapping("/articles")
         public String showArticles(Model model, HttpSession session) {
 
-            User user = (User) session.getAttribute("user");
+            User user = (User) session.getAttribute("user");// get stored user info so we know who wrote the article and can display it on their personalised article list. 
 
             if (user == null) {
                 return "redirect:/login";   // ✅ prevents crash
@@ -32,18 +33,19 @@ public class ArticleController {
             model.addAttribute("user", user);
             model.addAttribute("articles", articleService.getAllArticles());
 
-            return "articleList";
+            return "articleList"; // not properly wired yet, this will eventually look for articles and display them from the json file or database.
         }
 
-    // 🔹 Article form page
+    // method to show article form and save the article.
     @GetMapping("/articles/new")
     public String showArticleForm(Model model, HttpSession session) {
 
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
 
-        return "articleForm";
+        return "articleForm"; //this will look for and find, hopefully, articleForm.html in the templates folder and render it for us.
     }
+    //method to save the article.
     @PostMapping("/articles/save")
     public String saveArticle(Article article) {
 
@@ -52,6 +54,6 @@ public class ArticleController {
 
         articleService.saveArticle(article);
 
-        return "redirect:/articles";
+        return "redirect:/articles"; // after saving, we want to go back to the article list page to see our new article in the list.
     }
 }
