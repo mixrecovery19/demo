@@ -37,7 +37,7 @@ public class LoginController {
     public String handleLogin(User user, Model model, HttpSession session) {
 
         if ("Michael".equals(user.getUsername()) &&
-            "J4v4Cl4ss!".equals(user.getPassword())) {
+            "123".equals(user.getPassword())) {
 
             session.setAttribute("user", user);  // ✅ STORE IN SESSION
             return "redirect:/";                 // ✅ GO BACK TO HOME
