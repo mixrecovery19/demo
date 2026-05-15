@@ -1,26 +1,59 @@
 package com.bit235.model;
-//class for the article model. this simply sets the title and content of each article.
-// for example, if we wanted to add an author field, or a date field, we would apply that here.
+
+import jakarta.persistence.*;
+
+@Entity
 public class Article {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String content;
 
-    public Article() {}
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Person author;
 
-    public String getTitle() { 
-        return title; 
+    public Article() {
     }
 
-    public void setTitle(String title) { 
-        this.title = title; 
+    public Long getId() {
+        return id;
     }
 
-    public String getContent() { 
-        return content; 
+    public String getIdDisplay() {
+        return "#" + id;
     }
 
-    public void setContent(String content) { 
-        this.content = content; 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+    
+    public Person getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Person author) {
+        this.author = author;
     }
 }

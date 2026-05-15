@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+
     <title>Articles</title>
-    <link rel="stylesheet" href="/css/stylesArticleList.css">
+
+    <link rel="stylesheet"
+          href="/css/stylesArticleList.css">
 </head>
 
 <body>
@@ -14,25 +22,105 @@
     <h1>Articles</h1>
 
     <!-- 🔹 User Status -->
-    <p th:if="${user == null}" class="logged-out">
+    <p th:if="${user == null}"
+       class="logged-out">
+
         Logged out
     </p>
 
-    <p th:if="${user != null}" class="logged-in">
-        Logged in as: <span th:text="${user?.username}"></span>
+    <p th:if="${user != null}"
+       class="logged-in">
+
+        Logged in as:
+        <span th:text="${user.username}">
+        </span>
     </p>
 
     <!-- 🔹 Article Actions -->
-    <div th:if="${user != null}" class="button-group">
-        <form action="/articles/new" method="get">
-            <button type="submit" class="btn-primary">Create Article</button>
+    <div th:if="${user != null}"
+         class="button-group">
+
+        <form action="/articles/new"
+              method="get">
+
+            <button type="submit"
+                    class="btn-primary">
+
+                Create Article
+            </button>
+
         </form>
     </div>
 
     <!-- 🔹 Navigation -->
     <div class="button-group">
-        <a href="/" class="btn-secondary link-button">Back to Home</a>
+
+        <a href="/"
+           class="btn-secondary link-button">
+
+            Back to Home
+
+        </a>
     </div>
+
+   <!-- 🔹 Article List -->
+<div class="article-list">
+
+    <div th:if="${#lists.isEmpty(articles)}">
+        <p>No articles yet.</p>
+    </div>
+
+    <div th:each="article : ${articles}"
+         class="article-card">
+
+        <!-- Article Title -->
+        <h2 th:text="${article.title}">
+            Article Title
+        </h2>
+
+        <!-- Article Content -->
+        <p th:text="${article.content}">
+            Article Content
+        </p>
+
+        <hr>
+
+        <!-- Author Information -->
+        <div th:if="${article.author != null}">
+
+            <p>
+                <strong>Written by:</strong>
+
+                <span
+                    th:text="${article.author.username}">
+                </span>
+            </p>
+
+            <p>
+                <strong>Name:</strong>
+
+                <span
+                    th:text="${article.author.givenname + ' ' + article.author.familyname}">
+                </span>
+            </p>
+
+            <p>
+                <strong>Country:</strong>
+
+                <span
+                    th:text="${article.author.country.name}">
+                </span>
+            </p>
+
+        </div>
+
+        <div th:if="${article.author == null}">
+            <p>Unknown author</p>
+        </div>
+
+    </div>
+
+</div>    
 
 </div>
 
