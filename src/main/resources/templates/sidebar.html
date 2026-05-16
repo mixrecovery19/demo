@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+</head>
+
+<body>
+
+<div th:fragment="sidebar"
+     class="sidebar">
+
+    <div class="sidebar-header">
+
+        <h2>My Wiki</h2>
+
+        <p th:if="${user == null}">
+            Guest Mode
+        </p>
+
+        <p th:if="${user != null}">
+            Welcome,
+            <span th:text="${user.username}"></span>
+        </p>
+
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <a th:href="@{/}">
+            Home
+        </a>
+
+        <a th:href="@{/articles}">
+            Read Articles
+        </a>
+
+        <a th:if="${user != null}"
+           th:href="@{/articles/new}">
+            Create Article
+        </a>
+
+        <a th:if="${user == null}"
+           th:href="@{/login}">
+            Login
+        </a>
+
+        <a th:if="${user != null}"
+           th:href="@{/logout}">
+            Logout
+        </a>
+
+        <div th:if="${user != null and user.username == '1'}">
+
+            <hr>
+
+            <h4>Admin</h4>
+
+            <a href="#">
+                Manage Users
+            </a>
+
+            <a href="#">
+                Manage Articles
+            </a>
+
+        </div>
+
+    </nav>
+
+</div>
+
+</body>
+</html>

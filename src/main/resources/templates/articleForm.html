@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Article</title>
-    <link rel="stylesheet" href="/css/stylesArticleForm.css">
+     <link rel="stylesheet"
+          href="/css/stylesSidebar.css">
+
+    <link rel="stylesheet"
+          href="/css/stylesArticleForm.css">
 </head>
 
 <body>
 
-<div class="container">
+<div class="app-layout">
 
+    <!-- Sidebar -->
+    <div th:replace="~{sidebar :: sidebar}"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="container">
+ 
     <h1>Create Article</h1>
 
     <!-- 🔹 User Status -->
@@ -23,11 +35,24 @@
     </p>
 
     <!-- 🔹 Form -->
-    <form action="/articles/save" method="post" class="form-group">
+    <form th:action="@{/articles/save}"
+      th:object="${article}"
+      method="post"
+      class="form-group">
 
-        <input type="text" name="title" placeholder="Title" required>
-
-        <textarea name="content" placeholder="Content" rows="6" required></textarea>
+      <input type="text"
+       th:field="*{title}"
+       placeholder="Title"
+       required>
+        <label for="category">Category</label>
+        <select id="category" th:field="*{category}">
+            <option value="">Select a category</option>
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+        </select>
+       <textarea th:field="*{content}"
+          placeholder="Content"
+          rows="6"
+          required></textarea>
 
         <button type="submit" class="btn-primary">Save Article</button>
     </form>
@@ -37,6 +62,9 @@
         <a href="/articles" class="btn-secondary link-button">Back to Articles</a>   
     </div>
 
+</div>
+
+</main>
 </div>
 
 </body>

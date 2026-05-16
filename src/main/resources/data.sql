@@ -2,6 +2,30 @@ INSERT INTO country (name) VALUES ('Australia');
 INSERT INTO country (name) VALUES ('India');
 INSERT INTO country (name) VALUES ('Mongolia');
 
+INSERT INTO CATEGORY
+(NAME, DESCRIPTION)
+VALUES
+('Technology',
+ 'Programming and technology');
+
+INSERT INTO CATEGORY
+(NAME, DESCRIPTION)
+VALUES
+('History',
+ 'Historical information');
+
+INSERT INTO CATEGORY
+(NAME, DESCRIPTION)
+VALUES
+('Science',
+ 'Scientific content');
+
+INSERT INTO CATEGORY
+(NAME, DESCRIPTION)
+VALUES
+('Politics',
+ 'Political articles');
+
 INSERT INTO person (
     username,
     password,
@@ -14,20 +38,13 @@ INSERT INTO person (
 VALUES (
     '1',
     '$2a$10$Iz3HbIZnLcDi83uQ.0rjw.Pna.WW5.t0BbRR4r2MkPHO7j.LsfFPi',
-    'Rivera',
-    'Alex',
-    '1985-01-01',
-    'Alex Rivera, known simply as "Admin" in the digital corridors of TechNova Solutions, was
-born in Manila in 1985 and immigrated to Australia at age twelve. From a young age, Alex displayed an extraordinary aptitude for technology, dismantling his first computer at thirteen and rebuilding it
-with upgraded components by morning. After earning a Bachelor of Information Technology from the University of Technology Sydney, Alex began a career that would span two decades in systems architecture and
-cybersecurity.
-As lead administrator for one of Australia’s largest cloud infrastructure providers, Alex oversees networks that support millions of users daily. Colleagues describe Admin as the calm guardian of the
-server room—methodical, quick-witted, and possessing an almost supernatural ability to diagnose failures before they occur. Beyond technical expertise, Alex mentors junior staff and has developed open-
-source monitoring tools adopted by companies worldwide. In 2022, Alex received the Australian IT Professional of the Year award for implementing zero-trust security frameworks that thwarted several major
-ransomware attempts.
-Outside work, Admin is an avid hiker and amateur astronomer, often found stargazing in the Blue Mountains. Married with two children, Alex balances high-pressure on-call duties with family life, teaching
-kids coding during weekends. At heart, Admin represents the invisible heroes of the digital age—those who keep the modern world running silently, one firewall rule at a time. With over 300,000 lines of
-custom scripting under the belt and a reputation for turning crises into smooth operations, Alex Rivera continues to shape the backbone of Australia’s technological infrastructure.',
+    'Admin',
+    'Admin',
+    '2001-01-01',
+    'The Admin account serves as the principal administrator profile for the Wiki Content Management System and is responsible for overseeing, maintaining, and moderating the entire platform. Unlike standard user accounts, Admin possesses elevated privileges that provide unrestricted access to system functionality, including the ability to create, edit, review, and remove content across all sections of the wiki. This account exists primarily to demonstrate role-based permissions within the application and to support administration, testing, and quality control processes.
+As the central management profile of the system, Admin is responsible for monitoring article activity, maintaining category organisation, reviewing content submissions, and ensuring that the wiki remains accurate, functional, and properly structured. The account has authority to access all user-created articles regardless of ownership, allowing for moderation and correction where necessary. In addition, Admin can oversee categories, update navigation structures, and maintain overall consistency across the website.
+From a technical perspective, the Admin account demonstrates several key software engineering concepts used throughout the Spring Boot MVC application, including authentication, session handling, object relationships, access control, and data persistence through Spring Data JPA. The account also plays an important role in validating security measures, such as password hashing, restricted page access, and role-based functionality between ordinary users and administrators.
+Within the context of this project, the Admin account acts as both a system supervisor and a testing profile for demonstrating the application during assessment. It provides a practical example of how privileged users can monitor content, maintain platform integrity, and ensure that the wiki remains operational and organised. Ultimately, Admin represents the central authority of the system—responsible for keeping the knowledge base accurate, secure, and accessible for all users.',
     1
 );
 INSERT INTO person (username, password, familyname, givenname, dob, biography, country_id)

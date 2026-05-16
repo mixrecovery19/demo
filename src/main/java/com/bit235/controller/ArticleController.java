@@ -10,19 +10,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.bit235.model.Article;
 import com.bit235.model.Person;
 import com.bit235.service.ArticleService;
+import com.bit235.service.CategoryService;
 
 @Controller
 public class ArticleController {
 
     private final ArticleService articleService;
+    private final CategoryService categoryService;
 
     public ArticleController(
-            ArticleService articleService
+            ArticleService articleService,
+            CategoryService categoryService
     ) {
-        this.articleService = articleService;
+        this.articleService =
+                articleService;
+        this.categoryService =
+                categoryService;
     }
 
-    // 🔹 Show all articles
+    // 🔹 Public article list
     @GetMapping("/articles")
     public String showArticles(
             Model model,
@@ -33,15 +39,12 @@ public class ArticleController {
                 (Person) session
                         .getAttribute("user");
 
-        // must be logged in
-        if (user == null) {
-            return "redirect:/login";
-        }
-
         // DEBUG
         System.out.println(
             "LOGGED USER: "
-            + user.getUsername()
+            + (user != null
+               ? user.getUsername()
+               : "Guest")
         );
 
         System.out.println(
@@ -58,13 +61,14 @@ public class ArticleController {
 
         model.addAttribute(
                 "articles",
-                articleService.getAllArticles()
+                articleService
+                        .getAllArticles()
         );
 
         return "articleList";
     }
 
-    // 🔹 Show create form
+    // 🔹 Create form (LOGIN REQUIRED)
     @GetMapping("/articles/new")
     public String showArticleForm(
             Model model,
@@ -88,11 +92,18 @@ public class ArticleController {
                 "article",
                 new Article()
         );
+       model.addAttribute(
+
+            "categories",
+
+            categoryService.getAllCategories()
+
+    );
 
         return "articleForm";
     }
 
-    // 🔹 Save article
+    // 🔹 Save article (LOGIN REQUIRED)
     @PostMapping("/articles/save")
     public String saveArticle(
             Article article,
@@ -107,7 +118,7 @@ public class ArticleController {
             return "redirect:/login";
         }
 
-        // attach article to logged in user
+        // attach logged in user
         article.setAuthor(user);
 
         articleService.saveArticle(

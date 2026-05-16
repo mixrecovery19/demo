@@ -56,4 +56,14 @@ public class Article {
     public void setAuthor(Person author) {
         this.author = author;
     }
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+    public Category getCategory() {
+    return category;
+}
+
+public void setCategory(Category category) {
+    this.category = category;
+}
 }
