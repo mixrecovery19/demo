@@ -16,43 +16,96 @@ public class PersonService {
             PersonRepository personRepository,
             PasswordEncoder passwordEncoder
     ) {
-        this.personRepository = personRepository;
-        this.passwordEncoder = passwordEncoder;
+        this.personRepository =
+                personRepository;
+
+        this.passwordEncoder =
+                passwordEncoder;
     }
 
+    // 🔹 Login
     public Person login(
             String username,
             String password
     ) {
 
-        System.out.println("========== LOGIN ATTEMPT ==========");
-        System.out.println("USERNAME ENTERED: " + username);
-        System.out.println("PASSWORD ENTERED: " + password);
+        System.out.println(
+                "========== LOGIN ATTEMPT =========="
+        );
 
-        Person person = personRepository
-                .findByUsername(username)
-                .orElse(null);
+        System.out.println(
+                "USERNAME ENTERED: "
+                + username
+        );
+
+        System.out.println(
+                "PASSWORD ENTERED: "
+                + password
+        );
+
+        Person person =
+                personRepository
+                        .findByUsername(
+                                username
+                        )
+                        .orElse(null);
 
         if (person == null) {
-            System.out.println("USER NOT FOUND");
+
+            System.out.println(
+                    "USER NOT FOUND"
+            );
+
             return null;
         }
 
-        System.out.println("FOUND USER: " + person.getUsername());
-        System.out.println("DATABASE HASH: " + person.getPassword());
-
-        boolean matches = passwordEncoder.matches(
-                password,
-                person.getPassword()
+        System.out.println(
+                "FOUND USER: "
+                + person.getUsername()
         );
 
-        System.out.println("PASSWORD MATCHES: " + matches);
-        System.out.println("===================================");
+        System.out.println(
+                "DATABASE HASH: "
+                + person.getPassword()
+        );
+
+        boolean matches =
+                passwordEncoder.matches(
+                        password,
+                        person.getPassword()
+                );
+
+        System.out.println(
+                "PASSWORD MATCHES: "
+                + matches
+        );
+
+        System.out.println(
+                "==================================="
+        );
 
         if (matches) {
             return person;
         }
 
         return null;
+    }
+
+    // 🔹 Save New User
+    public void savePerson(
+            Person person
+    ) {
+
+        // hash password
+        person.setPassword(
+                passwordEncoder.encode(
+                        person.getPassword()
+                )
+        );
+
+        // save user
+        personRepository.save(
+                person
+        );
     }
 }

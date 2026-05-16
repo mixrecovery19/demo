@@ -11,9 +11,14 @@ public class Person {
     private Long id;
 
     private String username;
+
     private String password;
+
     private String familyname;
+
     private String givenname;
+
+    private Boolean isAdmin = false;
 
     private LocalDate dob;
 
@@ -27,6 +32,7 @@ public class Person {
     public Person() {
     }
 
+    // 🔹 ID
     public Long getId() {
         return id;
     }
@@ -35,59 +41,96 @@ public class Person {
         this.id = id;
     }
 
+    // 🔹 Username
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(
+            String username
+    ) {
         this.username = username;
     }
 
+    // 🔹 Password
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(
+            String password
+    ) {
         this.password = password;
     }
 
+    // 🔹 Family Name
     public String getFamilyname() {
         return familyname;
     }
 
-    public void setFamilyname(String familyname) {
+    public void setFamilyname(
+            String familyname
+    ) {
         this.familyname = familyname;
     }
 
+    // 🔹 Given Name
     public String getGivenname() {
         return givenname;
     }
 
-    public void setGivenname(String givenname) {
+    public void setGivenname(
+            String givenname
+    ) {
         this.givenname = givenname;
     }
 
+    // 🔹 Date of Birth
     public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(
+            LocalDate dob
+    ) {
         this.dob = dob;
     }
 
+    // 🔹 Biography
     public String getBiography() {
         return biography;
     }
 
-    public void setBiography(String biography) {
+    public void setBiography(
+            String biography
+    ) {
         this.biography = biography;
     }
 
+    // 🔹 Country
     public Country getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
+    public void setCountry(
+            Country country
+    ) {
         this.country = country;
+    }
+
+    // 🔹 Admin Role
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(
+            Boolean isAdmin
+    ) {
+        this.isAdmin = isAdmin;
+    }
+
+    // 🔹 Convenience Method
+    public Boolean isUser() {
+        return !isAdmin;
     }
 }

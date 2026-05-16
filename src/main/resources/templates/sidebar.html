@@ -51,6 +51,10 @@
            th:href="@{/logout}">
             Logout
         </a>
+        <a th:if="${user == null}"
+            th:href="@{/create-user-account}">
+            Create Account
+        </a>
 
         <div th:if="${user != null and user.username == '1'}">
 

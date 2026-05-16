@@ -22,7 +22,7 @@ public class LoginController {
                 personService;
     }
 
-    // 🔹 Home page
+    // 🔹 Home Page
     @GetMapping("/")
     public String home(
             Model model,
@@ -32,7 +32,7 @@ public class LoginController {
         Person user =
                 (Person) session
                         .getAttribute(
-                            "user"
+                                "user"
                         );
 
         model.addAttribute(
@@ -40,16 +40,32 @@ public class LoginController {
                 user
         );
 
+        model.addAttribute(
+                "isAdmin",
+                user != null
+                && Boolean.TRUE.equals(
+                        user.getIsAdmin()
+                )
+        );
+
         return "index";
     }
 
-    // 🔹 Login page
+    // 🔹 Login Page
     @GetMapping("/login")
-    public String showLogin() {
+    public String showLogin(
+            Model model
+    ) {
+
+        model.addAttribute(
+                "person",
+                new Person()
+        );
+
         return "login";
     }
 
-    // 🔹 Login action
+    // 🔹 Login Action
     @PostMapping("/login")
     public String handleLogin(
             Person formUser,
@@ -59,8 +75,8 @@ public class LoginController {
 
         Person loggedInUser =
                 personService.login(
-                    formUser.getUsername(),
-                    formUser.getPassword()
+                        formUser.getUsername(),
+                        formUser.getPassword()
                 );
 
         if (loggedInUser != null) {
@@ -68,6 +84,11 @@ public class LoginController {
             session.setAttribute(
                     "user",
                     loggedInUser
+            );
+
+            session.setAttribute(
+                    "isAdmin",
+                    loggedInUser.getIsAdmin()
             );
 
             return "redirect:/";

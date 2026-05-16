@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+
+    <title>Create Account</title>
+
+    <link rel="stylesheet"
+          href="/css/stylesSidebar.css">
+
+    <link rel="stylesheet"
+          href="/css/stylesLoginForm.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- Sidebar -->
+    <div th:replace="~{sidebar :: sidebar}">
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="container">
+
+            <h1>Create Account</h1>
+
+            <form th:action="@{/create-user-account/save}"
+                  th:object="${person}"
+                  method="post"
+                  class="form-group">
+
+                <input type="text"
+                       th:field="*{username}"
+                       placeholder="Username"
+                       required>
+
+                <input type="password"
+                       th:field="*{password}"
+                       placeholder="Password"
+                       required>
+
+                <input type="text"
+                       th:field="*{givenname}"
+                       placeholder="Given Name"
+                       required>
+
+                <input type="text"
+                       th:field="*{familyname}"
+                       placeholder="Family Name"
+                       required>
+
+                <label for="dob">
+                    Date of Birth
+                </label>
+
+                <input id="dob" type="date"
+                       th:field="*{dob}"
+                       title="Date of Birth"
+                       placeholder="YYYY-MM-DD"
+                       required>
+
+                <textarea th:field="*{biography}"
+                          placeholder="Tell us about yourself"
+                          rows="6">
+                </textarea>
+
+                <button type="submit"
+                        class="btn-primary">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+            <div class="button-group">
+
+                <a th:href="@{/login}"
+                   class="btn-secondary link-button">
+
+                    Back to Login
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
