@@ -108,4 +108,10 @@ public class PersonService {
                 person
         );
     }
+    public Person getPersonById(Long id) {
+
+    return personRepository
+            .findById(id)
+            .orElse(null);
+}
 }

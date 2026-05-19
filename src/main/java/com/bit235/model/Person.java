@@ -122,6 +122,9 @@ public class Person {
     public Boolean getIsAdmin() {
         return isAdmin;
     }
+    public Boolean isAdmin() {
+    return isAdmin;
+}
 
     public void setAdmin(
             Boolean isAdmin

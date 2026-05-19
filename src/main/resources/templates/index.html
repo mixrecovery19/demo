@@ -26,40 +26,92 @@
     <div th:replace="~{sidebar :: sidebar}">
     </div>
 
-    <!-- 🔹 Main Content -->
-    <main class="main-content">
+ <!-- 🔹 Main Content -->
+<main class="main-content">
 
-        <h1>Welcome to My Wiki</h1>
+    <div class="home-container">
 
-        <p th:if="${user == null}"
-           class="logged-out">
+        <!-- Hero -->
+        <section class="hero-section">
 
-            You are currently browsing
-            in read-only mode.
-        </p>
+            <h1>A Very Broken System</h1>
 
-        <p th:if="${user != null}"
-           class="logged-in">
+            <p class="tagline">
+                A wiki documenting dysfunction,
+                bureaucracy, strange systems,
+                and the stories behind them.
+            </p>
 
-            Logged in as:
-            <span th:text="${user.username}">
-            </span>
-        </p>
+        </section>
 
-        <div class="hero-card">
+        <!-- Login Status -->
+        <section class="status-card">
 
-            <h2>Knowledge Hub</h2>
+            <div th:if="${user == null}"
+                 class="logged-out">
+
+                <strong>Guest Access</strong>
+
+                <p>
+                    You are currently browsing
+                    in read-only mode.
+                </p>
+
+            </div>
+
+            <div th:if="${user != null}"
+                 class="logged-in">
+
+                <strong>Logged In</strong>
+
+                <p>
+                    Welcome back,
+                    <span th:text="${user.username}">
+                    </span>
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- About -->
+        <section class="hero-card">
+
+            <h2>Wiki Overview</h2>
 
             <p>
                 Browse articles,
-                explore content,
-                and contribute
-                after logging in.
+                explore categories,
+                and examine the many ways
+                systems break, drift,
+                or quietly stop functioning.
             </p>
 
-        </div>
+            <p>
+                Administrators can log in
+                to create, edit,
+                and manage wiki content.
+            </p>
 
-    </main>
+        </section>
+
+        <!-- Future Feature Placeholder -->
+        <section class="preview-card">
+
+            <h3>Featured Article</h3>
+
+            <p>
+                Coming soon:
+                rotating featured content,
+                article previews,
+                and category highlights.
+            </p>
+
+        </section>
+
+    </div>
+
+</main>
 
 </div>
 

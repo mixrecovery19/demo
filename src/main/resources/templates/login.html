@@ -4,34 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="/css/stylesLoginForm.css">
+    <link rel="stylesheet"
+          href="/css/stylesSidebar.css">
+
+    <link rel="stylesheet"
+          href="/css/stylesLoginForm.css">
 </head>
 
 <body th:class="${user != null} ? 'logged-in-bg' : 'logged-out-bg'">
 
-<div class="container">
+<div class="app-layout">
 
-    <h1>Login</h1>
-
-    <form action="/login" method="post" class="form-group">
-
-        <input type="text" id="username" name="username" 
-               placeholder="Username" required>
-
-        <input type="password" id="password" name="password" 
-               placeholder="Password" required>
-
-        <button type="submit" class="btn-primary">Login</button>
-
-    </form>
-
-    <!-- 🔹 Error message -->
-    <p th:if="${error}" class="error-message" th:text="${error}"></p>
-
-    <!-- 🔹 Navigation -->
-    <div class="button-group">
-       <a href="/" class="btn-secondary link-button">Back to Home</a>   
+    <!-- Sidebar -->
+    <div th:replace="~{sidebar :: sidebar}">
     </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="container">
+
+            <h1>Login</h1>
+
+            <form action="/login"
+                  method="post"
+                  class="form-group">
+
+                <input type="text"
+                       id="username"
+                       name="username"
+                       placeholder="Username"
+                       required>
+
+                <input type="password"
+                       id="password"
+                       name="password"
+                       placeholder="Password"
+                       required>
+
+                <button type="submit"
+                        class="btn-primary">
+
+                    Login
+
+                </button>
+
+            </form>
+
+            <!-- Error message -->
+            <p th:if="${error}"
+               class="error-message"
+               th:text="${error}">
+            </p>
+
+            <!-- Navigation -->
+            <div class="button-group">
+
+                <a href="/"
+                   class="btn-secondary link-button">
+
+                    Back to Home
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
 
 </div>
 
