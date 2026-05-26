@@ -2,6 +2,7 @@ package com.bit235.service;
 
 import java.util.List;
 
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.bit235.model.Article;
@@ -20,7 +21,20 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
-    public void saveArticle(Article article) {
+    public void saveArticle(@NonNull Article article) {
         articleRepository.save(article);
+    }
+    public void deleteArticle(
+        Long id
+    ) {
+        articleRepository
+                .deleteById(id);
+    }
+    public Article getArticleById(
+            Long id
+    ) {
+        return articleRepository
+                .findById(id)
+                .orElse(null);
     }
 }

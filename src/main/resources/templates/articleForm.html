@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Article</title>
+    <title th:text="${article.id == null} 
+    ? 'Create Article' 
+    : 'Edit Article'">
+    </title>
      <link rel="stylesheet"
           href="/css/stylesSidebar.css">
 
@@ -23,7 +26,10 @@
 
         <div class="container">
  
-    <h1>Create Article</h1>
+    <h1 th:text="${article.id == null} 
+    ? 'Create Article' 
+    : 'Edit Article'">
+    </h1>
 
     <!-- 🔹 User Status -->
     <p th:if="${user == null}" class="logged-out">
@@ -39,7 +45,8 @@
       th:object="${article}"
       method="post"
       class="form-group">
-
+        <input type="hidden"
+            th:field="*{id}">
       <input type="text"
        th:field="*{title}"
        placeholder="Title"

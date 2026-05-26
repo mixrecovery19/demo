@@ -179,25 +179,24 @@
 
             <!-- ADMIN BUTTONS -->
           <!-- ADMIN BUTTONS -->
-<div class="admin-actions"
-     th:if="${user != null and user.getIsAdmin()}">
+            <div class="admin-actions"
+                th:if="${user != null and
+                    (
+                    user.isAdmin
+                    or
+                    article.author.id == user.id
+                    )}">
 
-    <a th:href="@{/articles/edit/{id}(id=${article.id})}"
-       class="btn-edit">
+                <a th:href="@{/articles/edit/{id}(id=${article.id})}"
+                class="btn-edit">
+                    Edit
+                </a>
 
-        Edit
-
-    </a>
-
-    <a th:href="@{/articles/delete/{id}(id=${article.id})}"
-       class="btn-delete">
-
-        Delete
-
-    </a>
-
-</div>
-
+                <a th:href="@{/articles/delete/{id}(id=${article.id})}"
+                class="btn-delete">
+                    Delete
+                </a>
+            </div>
         </section>
 
     </div>
