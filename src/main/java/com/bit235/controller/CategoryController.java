@@ -120,7 +120,6 @@ public class CategoryController {
             Model model,
             HttpSession session
     ) {
-
         Boolean isAdmin =
                 (Boolean) session.getAttribute(
                         "isAdmin"
@@ -159,7 +158,6 @@ public class CategoryController {
     public String saveCategory(
             @ModelAttribute Category category
     ) {
-
         // Defensive check
         if (category != null) {
 
@@ -167,7 +165,6 @@ public class CategoryController {
                     category
             );
         }
-
         return "redirect:/categories";
     }
 

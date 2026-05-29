@@ -3,7 +3,7 @@ package com.bit235.model;
 import java.time.LocalDate;
 import jakarta.persistence.*;
 
-@Entity
+@Entity// JPA annotation to mark this class as a database entity
 public class Person {
 
     @Id
@@ -118,21 +118,22 @@ public class Person {
         this.country = country;
     }
 
-    // 🔹 Admin Role
+    // establishes an admin role for the person entity allowing us to differentiate between users and admins in the application
     public Boolean getIsAdmin() {
         return isAdmin;
     }
+
     public Boolean isAdmin() {
     return isAdmin;
-}
-
+    }
+// The setter for isAdmin allows us to assign admin privileges to a user
     public void setAdmin(
             Boolean isAdmin
     ) {
         this.isAdmin = isAdmin;
     }
 
-    // 🔹 Convenience Method
+    //separates the user from the admin role allowing me to create a user/admin type of flow to the project
     public Boolean isUser() {
         return !isAdmin;
     }

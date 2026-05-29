@@ -29,7 +29,7 @@ public class PersonService {
             String username,
             String password
     ) {
-
+        debugUsers();
         System.out.println(
                 "========== LOGIN ATTEMPT =========="
         );
@@ -115,4 +115,24 @@ public class PersonService {
                 .findById(id)
                 .orElse(null);
     }
+    public void debugUsers() {
+
+    System.out.println(
+            "===== USERS IN DATABASE ====="
+    );
+
+    personRepository
+            .findAll()
+            .forEach(person ->
+
+                System.out.println(
+                        "USERNAME: "
+                        + person.getUsername()
+                )
+            );
+
+    System.out.println(
+            "============================="
+    );
+}
 }
