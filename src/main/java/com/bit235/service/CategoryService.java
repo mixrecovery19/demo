@@ -2,6 +2,7 @@ package com.bit235.service;
 
 import java.util.List;
 
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.bit235.model.Category;
@@ -23,12 +24,16 @@ public class CategoryService {
     }
 
     public Category getCategoryById(Long id) {
+        if (id == null) {
+            return null;
+        }
+
         return categoryRepository
                 .findById(id)
                 .orElse(null);
     }
 
-    public void saveCategory(Category category) {
+    public void saveCategory(@NonNull Category category) {
         categoryRepository.save(category);
     }
 

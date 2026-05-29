@@ -16,6 +16,7 @@
 
     <link rel="stylesheet"
           href="/css/stylesHome.css">
+          
 </head>
 
 <body>
@@ -32,7 +33,18 @@
     <div class="home-container">
 
         <!-- Hero -->
+        <!-- Hero -->
         <section class="hero-section">
+
+            <div class="image-carousel-container">
+
+                <img
+                    id="carouselImage"
+                    class="carousel-image"
+                    alt="Homepage image"
+                >
+
+            </div>
 
             <h1>A Very Broken System</h1>
 
@@ -100,12 +112,35 @@
 
             <h3>Featured Article</h3>
 
-            <p>
-                Coming soon:
-                rotating featured content,
-                article previews,
-                and category highlights.
-            </p>
+            <div
+                th:if="${featuredArticle != null}"
+            >
+
+                <h4
+                    th:text=
+                    "${featuredArticle.title}">
+                </h4>
+
+                <p
+                    th:text=
+                    "${#strings.abbreviate(
+                        featuredArticle.content,
+                        180
+                    )}">
+                </p>
+
+            </div>
+
+            <div
+                th:if=
+                "${featuredArticle == null}"
+            >
+
+                <p>
+                    No articles available.
+                </p>
+
+            </div>
 
         </section>
 
@@ -117,3 +152,11 @@
 
 </body>
 </html>
+<script th:inline="javascript">
+
+    const myImages =
+        /*[[${images}]]*/ [];
+
+</script>
+
+<script src="/js/homePageImageRotation.js"></script>

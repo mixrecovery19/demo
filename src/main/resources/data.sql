@@ -50,7 +50,7 @@ Within the context of this project, the Admin account acts as both a system supe
     1
 );
 
-INSERT INTO person (
+/*INSERT INTO person (
     username,
     password,
     familyname,
@@ -141,4 +141,4 @@ VALUES (
     'Genghis Khan Biography',
     'Genghis Khan, born Temujin around 1162...',
     3
-);
+);*/

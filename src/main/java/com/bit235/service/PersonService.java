@@ -2,6 +2,7 @@ package com.bit235.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.lang.NonNull;
 
 import com.bit235.model.Person;
 import com.bit235.repository.PersonRepository;
@@ -108,10 +109,10 @@ public class PersonService {
                 person
         );
     }
-    public Person getPersonById(Long id) {
 
-    return personRepository
-            .findById(id)
-            .orElse(null);
-}
+        public Person getPersonById(@NonNull Long id) {
+        return personRepository
+                .findById(id)
+                .orElse(null);
+    }
 }

@@ -176,7 +176,7 @@ form:last-of-type {
     box-shadow:
         0 10px 25px rgba(0,0,0,0.08);
 
-    backdrop-filter: blur(8px);
+  
 }
 
 /* 🔹 Card headings */
@@ -201,4 +201,40 @@ form:last-of-type {
 /* 🔹 Logged out */
 .logged-out {
     color: #e74c3c;
+}
+/* Homepage carousel container */
+
+.image-carousel-container {
+
+    width: 100%;
+    max-width: 850px;
+
+    height: 520px;
+
+    margin: 0 auto 2rem auto;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    border: 1px solid #dcdcdc;
+
+    background-color: #f4f4f4;
+
+    box-shadow:
+        0 4px 16px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+/* Carousel image */
+
+.carousel-image {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
 }

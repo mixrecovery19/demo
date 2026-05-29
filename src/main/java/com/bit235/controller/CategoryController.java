@@ -62,9 +62,11 @@ public class CategoryController {
             @ModelAttribute Category category
     ) {
 
-        categoryService.saveCategory(
-                category
-        );
+        if (category != null) {
+            categoryService.saveCategory(
+                    category
+            );
+        }
 
         return "redirect:/categories";
     }

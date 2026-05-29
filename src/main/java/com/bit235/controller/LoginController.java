@@ -2,32 +2,44 @@ package com.bit235.controller;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.io.IOException;
+
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.core.io.Resource;
+import java.util.Arrays;
+import java.util.List;
 
+import com.bit235.model.Article;
 import com.bit235.model.Person;
 import com.bit235.service.PersonService;
+import com.bit235.service.ArticleService;
 
 @Controller
 public class LoginController {
 
     private final PersonService personService;
+    private final ArticleService articleService;
 
     public LoginController(
-            PersonService personService
+            PersonService personService,
+            ArticleService articleService
     ) {
         this.personService =
                 personService;
+        this.articleService =
+                articleService;
     }
 
     // 🔹 Home Page
-    @GetMapping("/")
-    public String home(
-            Model model,
-            HttpSession session
-    ) {
+   @GetMapping("/")
+        public String home(
+                Model model,
+                HttpSession session
+        ) throws IOException {
 
         Person user =
                 (Person) session
@@ -48,8 +60,36 @@ public class LoginController {
                 )
         );
 
+        // 🔹 Load all images
+        Resource[] files =
+                new PathMatchingResourcePatternResolver()
+                        .getResources(
+                                "classpath:/static/images/*"
+                        );
+
+        List<String> images =
+                Arrays.stream(files)
+                        .map(file ->
+                                "/images/"
+                                + file.getFilename()
+                        )
+                        .toList();
+
+        model.addAttribute(
+                "images",
+                images
+        );
+        Article featuredArticle =
+        articleService
+                .getRandomArticle();
+
+        model.addAttribute(
+                "featuredArticle",
+                featuredArticle
+        );
+
         return "index";
-    }
+        }
 
     // 🔹 Login Page
     @GetMapping("/login")

@@ -1,6 +1,7 @@
 package com.bit235.service;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -25,16 +26,35 @@ public class ArticleService {
         articleRepository.save(article);
     }
     public void deleteArticle(
-        Long id
+        @NonNull Long id/*Null Safety */
     ) {
         articleRepository
                 .deleteById(id);
     }
     public Article getArticleById(
-            Long id
+            @NonNull Long id
     ) {
         return articleRepository
                 .findById(id)
                 .orElse(null);
     }
+    public Article getRandomArticle() {
+
+    List<Article> articles =
+            articleRepository
+                    .findAll();
+
+    if (articles.isEmpty()) {
+        return null;
+    }
+
+    Random random =
+            new Random();
+
+    return articles.get(
+            random.nextInt(
+                    articles.size()
+            )
+    );
+}
 }
