@@ -1,6 +1,6 @@
 //javascript function to roate home page images on a automated carousel everry 5 secdonds//
 // JavaScript function to rotate
-// homepage images every 5 seconds
+// homepage images every 5 secondst
 
 var slideIndex = 0;
 
