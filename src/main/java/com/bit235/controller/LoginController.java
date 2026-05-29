@@ -1,7 +1,8 @@
+/* this is a login controller, spring boot uses controllers to handle https requests and map the urls
+ */
 package com.bit235.controller;
 
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -18,6 +19,12 @@ import com.bit235.model.Person;
 import com.bit235.service.PersonService;
 import com.bit235.service.ArticleService;
 
+/**
+ * LoginController
+ * -----------------
+ * This class handles login-related requests. By access the necessary Service laeyers it can perform login flow and logic as well as, in this case
+ * displaying the home page with dynamic content.
+ */
 @Controller
 public class LoginController {
 
@@ -34,13 +41,14 @@ public class LoginController {
                 articleService;
     }
 
-    // 🔹 Home Page
+    //method to display the home page, it also passes session information to the view and loads dynamic content such as images and a featured article
    @GetMapping("/")
         public String home(
                 Model model,
                 HttpSession session
         ) throws IOException {
-
+//using person object to store the user information in the session and pass it to the view
+//mildly confusing because we really must create a Person Class prior to being able to use it as an object
         Person user =
                 (Person) session
                         .getAttribute(
