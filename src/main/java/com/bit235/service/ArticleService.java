@@ -32,7 +32,7 @@ public class ArticleService {
                 .deleteById(id);
     }
     public Article getArticleById(
-            @NonNull Long id
+            @NonNull Long id/*Null Safety */
     ) {
         return articleRepository
                 .findById(id)
@@ -40,21 +40,21 @@ public class ArticleService {
     }
     public Article getRandomArticle() {
 
-    List<Article> articles =
-            articleRepository
-                    .findAll();
+        List<Article> articles =
+                articleRepository
+                        .findAll();
 
-    if (articles.isEmpty()) {
-        return null;
+        if (articles.isEmpty()) {
+            return null;
+        }
+
+        Random random =
+                new Random();
+
+        return articles.get(
+                random.nextInt(
+                        articles.size()
+                )
+        );
     }
-
-    Random random =
-            new Random();
-
-    return articles.get(
-            random.nextInt(
-                    articles.size()
-            )
-    );
-}
 }

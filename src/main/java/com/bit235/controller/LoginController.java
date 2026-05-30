@@ -68,7 +68,7 @@ public class LoginController {
                 )
         );
 
-        // 🔹 Load all images
+        // loads all images so the home page can display and javascript function can access them
         Resource[] files =
                 new PathMatchingResourcePatternResolver()
                         .getResources(
@@ -87,6 +87,7 @@ public class LoginController {
                 "images",
                 images
         );
+        
         Article featuredArticle =
         articleService
                 .getRandomArticle();

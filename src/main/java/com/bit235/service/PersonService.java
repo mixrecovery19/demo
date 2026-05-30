@@ -19,7 +19,6 @@ public class PersonService {
     ) {
         this.personRepository =
                 personRepository;
-
         this.passwordEncoder =
                 passwordEncoder;
     }
@@ -115,24 +114,24 @@ public class PersonService {
                 .findById(id)
                 .orElse(null);
     }
-    public void debugUsers() {
-
-    System.out.println(
-            "===== USERS IN DATABASE ====="
-    );
-
-    personRepository
-            .findAll()
-            .forEach(person ->
+                public void debugUsers() {
 
                 System.out.println(
-                        "USERNAME: "
-                        + person.getUsername()
-                )
-            );
+                        "===== USERS IN DATABASE ====="
+                );
 
-    System.out.println(
-            "============================="
-    );
-}
-}
+                personRepository
+                        .findAll()
+                        .forEach(person ->
+
+                                System.out.println(
+                                        "USERNAME: "
+                                        + person.getUsername()
+                                )
+                        );
+
+                System.out.println(
+                        "============================="
+                );
+                }
+        }

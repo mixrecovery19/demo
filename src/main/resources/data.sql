@@ -1,3 +1,6 @@
+/* This file can actually be deleted because we are now using H2-Database properly and the data is being saved
+/* to a file called bit235db.mv.db in the project directory. However, I have left this file here for reference and testing purposes. */
+
 INSERT INTO country (name) VALUES ('Australia');
 INSERT INTO country (name) VALUES ('India');
 INSERT INTO country (name) VALUES ('Mongolia');
