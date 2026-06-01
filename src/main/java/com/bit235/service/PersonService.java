@@ -3,6 +3,7 @@ package com.bit235.service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.lang.NonNull;
+import java.util.List;
 
 import com.bit235.model.Person;
 import com.bit235.repository.PersonRepository;
@@ -23,73 +24,81 @@ public class PersonService {
                 passwordEncoder;
     }
 
-    // 🔹 Login
-    public Person login(
-            String username,
-            String password
-    ) {
-        debugUsers();
-        System.out.println(
-                "========== LOGIN ATTEMPT =========="
-        );
+  // 🔹 Login
+public Person login(
+        String username,
+        String password
+) {
+
+    // TEMP: generate BCrypt hash for "1"
+    System.out.println(
+            "TEMP HASH FOR 1: "
+            + passwordEncoder.encode("1")
+    );
+
+    debugUsers();
+
+    System.out.println(
+            "========== LOGIN ATTEMPT =========="
+    );
+
+    System.out.println(
+            "USERNAME ENTERED: "
+            + username
+    );
+
+    System.out.println(
+            "PASSWORD ENTERED: "
+            + password
+    );
+
+    Person person =
+            personRepository
+                    .findByUsername(
+                            username
+                    )
+                    .orElse(null);
+
+    if (person == null) {
 
         System.out.println(
-                "USERNAME ENTERED: "
-                + username
+                "USER NOT FOUND"
         );
-
-        System.out.println(
-                "PASSWORD ENTERED: "
-                + password
-        );
-
-        Person person =
-                personRepository
-                        .findByUsername(
-                                username
-                        )
-                        .orElse(null);
-
-        if (person == null) {
-
-            System.out.println(
-                    "USER NOT FOUND"
-            );
-
-            return null;
-        }
-
-        System.out.println(
-                "FOUND USER: "
-                + person.getUsername()
-        );
-
-        System.out.println(
-                "DATABASE HASH: "
-                + person.getPassword()
-        );
-
-        boolean matches =
-                passwordEncoder.matches(
-                        password,
-                        person.getPassword()
-                );
-
-        System.out.println(
-                "PASSWORD MATCHES: "
-                + matches
-        );
-
-        System.out.println(
-                "==================================="
-        );
-
-        if (matches) {
-            return person;
-        }
 
         return null;
     }
+
+    System.out.println(
+            "FOUND USER: "
+            + person.getUsername()
+    );
+
+    System.out.println(
+            "DATABASE HASH: "
+            + person.getPassword()
+    );
+
+    boolean matches =
+            passwordEncoder.matches(
+                    password,
+                    person.getPassword()
+            );
+
+    System.out.println(
+            "PASSWORD MATCHES: "
+            + matches
+    );
+
+    System.out.println(
+            "==================================="
+    );
+
+    if (matches) {
+        return person;
+    }
+
+    return null;
+}
 
     // 🔹 Save New User
     public void savePerson(
@@ -134,4 +143,51 @@ public class PersonService {
                         "============================="
                 );
                 }
+
+                public List<Person> findAll() {
+                return personRepository.findAll();
+                }
+
+                public Person findById(Long id) {
+                return personRepository.findById(id)
+                        .orElse(null);
+                }
+
+                public void deleteById(Long id) {
+                personRepository.deleteById(id);
+                }
+
+                public void saveExistingUser(
+        Person updatedPerson
+) {
+
+    Person existingPerson =
+            personRepository
+                    .findById(
+                            updatedPerson.getId()
+                    )
+                    .orElse(null);
+
+    if (existingPerson != null) {
+
+        // prevent password being lost
+        if (
+            updatedPerson.getPassword()
+            == null
+            || updatedPerson
+                    .getPassword()
+                    .isBlank()
+        ) {
+
+            updatedPerson.setPassword(
+                    existingPerson
+                            .getPassword()
+            );
+        }
+
+        personRepository.save(
+                updatedPerson
+        );
+    }
+}
         }

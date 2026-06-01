@@ -1,0 +1,264 @@
+.admin-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit,
+        minmax(280px, 1fr));
+
+    gap: 1rem;
+}
+
+.action-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.9rem 1rem;
+
+    background: #1e293b;
+    color: white;
+
+    border-radius: 12px;
+    text-decoration: none;
+}
+
+.action-button:hover {
+    background: #334155;
+}
+/* 🔹 Reset / Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 🔹 Page background */
+body {
+    font-family: -apple-system,
+                 BlinkMacSystemFont,
+                 "Segoe UI",
+                 Roboto,
+                 Arial,
+                 sans-serif;
+                  background: 
+        linear-gradient(rgba(244, 248, 251, 0.85), rgba(244, 248, 251, 0.85)),
+        url("/images/averybrokensystem2.png");
+
+
+    color: #2c3e50;
+    min-height: 100vh;
+}
+/* 🔹 Logged OUT background */
+.logged-out-bg {
+    background: 
+        linear-gradient(rgba(244, 248, 251, 0.9), rgba(244, 248, 251, 0.9)),
+        url("/images/cartoon-me-banging-head.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 🔹 Logged IN background */
+.logged-in-bg {
+    background: 
+        linear-gradient(rgba(244, 248, 251, 0.85), rgba(244, 248, 251, 0.85)),
+        url("/images/awesome-corruption-cartoon.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 🔹 Main container (card look) */
+.container {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* 🔹 Heading */
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* 🔹 Status text */
+.logged-in {
+    color: #2ecc71;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.logged-out {
+    color: #e74c3c;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* 🔹 Button base */
+button {
+    width: 100%;
+    padding: 12px;
+    
+    border: none;
+    border-radius: 8px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    display: block;
+}
+
+/* 🔹 Primary button (Articles) */
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+/* 🔹 Secondary button (Login) */
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+/* 🔹 Danger button (Logout) */
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* 🔹 Small spacing helper */
+.spacer {
+    margin-top: 20px;
+}
+/* 🔹 Space between forms (buttons) */
+form {
+    margin-bottom: 12px;
+}
+
+/* 🔹 Remove margin from last form */
+form:last-of-type {
+    margin-bottom: 0;
+}
+.button-group {
+    margin-top: 20px;
+}
+/* 🔹 Main home wrapper */
+.home-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* 🔹 Hero section */
+.hero-section {
+    margin-bottom: 2rem;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: #475569;
+    max-width: 700px;
+    line-height: 1.6;
+}
+
+/* 🔹 Shared cards */
+.hero-card,
+.status-card,
+.preview-card {
+    background: rgba(255,255,255,0.95);
+
+    border-radius: 16px;
+
+    padding: 2rem;
+
+    margin-bottom: 1.5rem;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.08);
+
+  
+}
+
+/* 🔹 Card headings */
+.hero-card h2,
+.preview-card h3 {
+    margin-bottom: 1rem;
+}
+
+/* 🔹 Text */
+.hero-card p,
+.preview-card p,
+.status-card p {
+    line-height: 1.7;
+    color: #374151;
+}
+
+/* 🔹 Logged in */
+.logged-in {
+    color: #2ecc71;
+}
+
+/* 🔹 Logged out */
+.logged-out {
+    color: #e74c3c;
+}
+/* Homepage carousel container */
+
+.image-carousel-container {
+
+    width: 100%;
+    max-width: 850px;
+
+    height: 520px;
+
+    margin: 0 auto 2rem auto;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    border: 1px solid #dcdcdc;
+
+    background-color: #f4f4f4;
+
+    box-shadow:
+        0 4px 16px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+/* Carousel image */
+
+.carousel-image {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}

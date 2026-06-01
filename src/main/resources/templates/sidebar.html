@@ -44,18 +44,18 @@
             th:href="@{/create-user-account}">
             Create Account
         </a>
-        <div th:if="${user != null and user.username == '1'}">
+        <div th:if="${user != null and user.username == '1'}" class="admin-section">
 
             <hr>
 
             <h4>Admin</h4>
 
-            <a href="#">
-                Manage Users
+            <a th:href="@{/admin}">
+                Admin Dashboard
             </a>
 
-            <a href="#">
-                Manage Articles
+            <a th:href="@{/admin/users}">
+                Manage Users
             </a>
 
         </div>

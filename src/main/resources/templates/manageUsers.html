@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+
+    <title>Manage Users</title>
+
+    <link rel="stylesheet"
+          href="/css/stylesSideBar.css">
+
+    <link rel="stylesheet"
+          href="/css/stylesManageUsers.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- Sidebar -->
+    <div th:replace="~{sidebar :: sidebar}">
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="home-container">
+
+            <!-- Hero -->
+            <section class="hero-section">
+
+                <h1>Manage Users</h1>
+
+                <p class="tagline">
+                    Review, edit,
+                    and remove user accounts.
+                </p>
+
+            </section>
+
+            <!-- Admin Status -->
+            <section class="status-card">
+
+                <strong>Administrator Access</strong>
+
+                <p>
+                    Logged in as
+                    <span th:text="${user.username}">
+                    </span>
+                </p>
+
+            </section>
+
+            <!-- User Table -->
+            <section class="hero-card">
+
+                <h2>Registered Users</h2>
+
+                <table class="users-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Given Name</th>
+                            <th>Family Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr th:each="person : ${users}">
+
+                            <td th:text="${person.id}">
+                            </td>
+
+                            <td th:text="${person.username}">
+                            </td>
+
+                            <td th:text="${person.givenname}">
+                            </td>
+
+                            <td th:text="${person.familyname}">
+                            </td>
+
+                            <td class="actions">
+
+                                <a class="edit-btn"
+                                   th:href=
+                                   "@{/admin/users/edit/{id}
+                                   (id=${person.id})}">
+                                    Edit
+                                </a>
+
+                                <a class="delete-btn"
+                                   th:href=
+                                   "@{/admin/users/delete/{id}
+                                   (id=${person.id})}"
+
+                                   onclick=
+                                   "return confirm(
+                                   'Delete this user?');">
+                                    Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

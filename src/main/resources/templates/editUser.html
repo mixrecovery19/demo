@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+
+    <title>Wiki Home</title>
+
+    <link rel="stylesheet"
+          href="/css/stylesSideBar.css">
+
+    <link rel="stylesheet"
+          href="/css/stylesHome.css">
+          
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- 🔹 Reusable Sidebar -->
+    <div th:replace="~{sidebar :: sidebar}">
+    </div>
+
+ <!-- 🔹 Main Content -->
+<main class="main-content">
+
+  <h1>Edit User</h1>
+
+<form th:action="@{/admin/users/update}"
+      th:object="${person}"
+      method="post">
+
+    <input type="hidden"
+           th:field="*{id}">
+
+    <label for="username">Username</label>
+    <input type="text"
+           id="username"
+           th:field="*{username}"
+           title="Username"
+           placeholder="Enter username">
+
+    <label for="givenname">Given Name</label>
+    <input type="text"
+           id="givenname"
+           th:field="*{givenname}"
+           title="Given Name"
+           placeholder="Enter given name">
+
+    <label for="familyname">Family Name</label>
+    <input type="text"
+           id="familyname"
+           th:field="*{familyname}"
+           title="Family Name"
+           placeholder="Enter family name">
+
+    <label for="biography">Biography</label>
+    <textarea id="biography"
+              th:field="*{biography}"
+              title="Biography"
+              placeholder="Enter biography"></textarea>
+
+    <button type="submit">
+        Save Changes
+    </button>
+</form>
+</body>
+</html>

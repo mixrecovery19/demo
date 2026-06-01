@@ -68,3 +68,16 @@ body {
 
     padding: 3rem;
 }
+.admin-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.admin-section h4 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
