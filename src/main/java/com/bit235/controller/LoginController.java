@@ -41,14 +41,14 @@ public class LoginController {
                 articleService;
     }
 
-    //method to display the home page, it also passes session information to the view and loads dynamic content such as images and a featured article
-   @GetMapping("/")
-        public String home(
-                Model model,
-                HttpSession session
-        ) throws IOException {
-//using person object to store the user information in the session and pass it to the view
-//mildly confusing because we really must create a Person Class prior to being able to use it as an object
+        //method to display the home page, it also passes session information to the view and loads dynamic content such as images and a featured article
+        @GetMapping("/")
+                public String home(
+                        Model model,
+                        HttpSession session
+                ) throws IOException {
+        //using person object to store the user information in the session and pass it to the view
+        //mildly confusing because we really must create a Person Class prior to being able to use it as an object
         Person user =
                 (Person) session
                         .getAttribute(
@@ -87,7 +87,9 @@ public class LoginController {
                 "images",
                 images
         );
-        
+        //introduces the Feature Article to the home page. Created in ArticleService.
+        // a great visual example of how we create a method in the Service layer, then call it through the Controller layer
+        // to pass on as required to eventually be displayed through Thymeleaf in the View layer. 
         Article featuredArticle =
         articleService
                 .getRandomArticle();
@@ -100,27 +102,27 @@ public class LoginController {
         return "index";
         }
 
-    // 🔹 Login Page
-    @GetMapping("/login")
-    public String showLogin(
-            Model model
-    ) {
+        // 🔹 Login Page
+        @GetMapping("/login")
+        public String showLogin(
+                Model model
+        ) {
 
-        model.addAttribute(
-                "person",
-                new Person()
-        );
+                model.addAttribute(
+                        "person",
+                        new Person()
+                );
 
-        return "login";
-    }
+                return "login";
+        }
 
-    // 🔹 Login Action
-    @PostMapping("/login")
-    public String handleLogin(
-            Person formUser,
-            Model model,
-            HttpSession session
-    ) {
+        // 🔹 Login Action
+        @PostMapping("/login")
+        public String handleLogin(
+                Person formUser,
+                Model model,
+                HttpSession session
+        ) {
 
         Person loggedInUser =
                 personService.login(

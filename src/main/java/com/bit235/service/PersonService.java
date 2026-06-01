@@ -148,12 +148,12 @@ public Person login(
                 return personRepository.findAll();
                 }
 
-                public Person findById(Long id) {
+                public Person findById(@NonNull Long id) {
                 return personRepository.findById(id)
                         .orElse(null);
                 }
 
-                public void deleteById(Long id) {
+                public void deleteById(@NonNull Long id) {
                 personRepository.deleteById(id);
                 }
 
@@ -161,10 +161,16 @@ public Person login(
         Person updatedPerson
 ) {
 
+                Long id = updatedPerson.getId();
+
+                if (id == null) {
+                        return;
+                }
+
     Person existingPerson =
             personRepository
                     .findById(
-                            updatedPerson.getId()
+                                                                id
                     )
                     .orElse(null);
 

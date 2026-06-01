@@ -4,6 +4,7 @@ package com.bit235.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.lang.NonNull;
 
 // Project imports
 import com.bit235.model.Category;
@@ -182,7 +183,7 @@ public class CategoryController {
      */
     @GetMapping("/delete/{id}")
     public String deleteCategory(
-            @PathVariable Long id,
+            @PathVariable @NonNull Long id,
             HttpSession session
     ) {
 

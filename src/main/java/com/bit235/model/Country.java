@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Country {
-
+//model class for Country. Handles the Country table design, entity relationships in Spring Boot and is a smaller.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

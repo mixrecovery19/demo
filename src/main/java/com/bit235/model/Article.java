@@ -1,6 +1,8 @@
 package com.bit235.model;
 
 import jakarta.persistence.*;
+//model class for Article. Helps define the Article table design, sets and gets attributes, and manages entity cardinality in Spring Boot that is through what are
+// commonly known as GETTERS and SETTERS. You could think of it as the ERD of the Spring project.
 
 @Entity
 public class Article {
@@ -13,7 +15,7 @@ public class Article {
 
     @Column(columnDefinition = "TEXT")
     private String content;
-
+// Getters and Setters for Article class, these provide a great place to simply add logic to our classes.
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Person author;
@@ -62,7 +64,8 @@ public class Article {
     public Category getCategory() {
     return category;
 }
-
+// setter for Category... we could add elements and attributes to our Category class quite easily once
+// setters and getteers are in place.
 public void setCategory(Category category) {
     this.category = category;
 }

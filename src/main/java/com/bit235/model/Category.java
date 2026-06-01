@@ -1,7 +1,8 @@
 package com.bit235.model;
 
 import jakarta.persistence.*;
-
+//model class for Category. Handles the Category table design, entity relationships in Spring Boot and is a smaller
+// less complext version of Articles allowing us to see a simpler model class.
 @Entity
 public class Category {
 
@@ -23,11 +24,10 @@ public class Category {
     }
 
     // Getters and Setters
-
     public Long getId() {
         return id;
     }
-
+// another example of a getter above, and this setter below. This is ineffect telling Spring Boot that Category needs an id, name, and description.
     public void setId(Long id) {
         this.id = id;
     }
@@ -47,4 +47,6 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
+    // we could either add more attributes to Category, for example, with scale I would add an edit Category, Country, User etc. to the Admin Dashboard.
+    
 }

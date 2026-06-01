@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.bit235.model.Person;
 import com.bit235.service.PersonService;
 
+// arguably this is the main controller class for the Person entity and handles Person-related actions
 @Controller
 public class PersonController {
 
@@ -20,7 +21,7 @@ public class PersonController {
                 personService;
     }
 
-    // 🔹 Show Create Account Page
+    // handles the http GET request for the create user accont for, literallly passing an empty Person object in prepartion for the form to be filled out and submitted
     @GetMapping("/create-user-account")
     public String showCreateUserForm(
             Model model
@@ -34,7 +35,7 @@ public class PersonController {
         return "createForm";
     }
 
-    // 🔹 Save New User
+    // method to handle a user account creation form's submission. Simply takes the form data, as a first step in the signup/save flow.
     @PostMapping("/create-user-account/save")
     public String saveUser(
             Person person

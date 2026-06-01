@@ -3,6 +3,7 @@ package com.bit235.controller;
 import com.bit235.model.Person;
 import com.bit235.service.PersonService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -80,7 +81,7 @@ public class AdminController {
 
     @GetMapping("/admin/users/edit/{id}")
     public String editUserForm(
-            @PathVariable Long id,
+            @PathVariable @NonNull Long id,
             Model model,
             HttpSession session
     ) {
@@ -122,7 +123,7 @@ public class AdminController {
 
     @GetMapping("/admin/users/delete/{id}")
     public String deleteUser(
-            @PathVariable Long id,
+            @PathVariable @NonNull Long id,
             HttpSession session
     ) {
         if (!isAdmin(session)) {

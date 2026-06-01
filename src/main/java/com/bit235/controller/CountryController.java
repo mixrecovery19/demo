@@ -65,7 +65,6 @@ public class CountryController {
                         "isAdmin"
                 )
         );
-
         // Return Thymeleaf page:
         // country.html
         return "country";

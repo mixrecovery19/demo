@@ -5,7 +5,11 @@ import jakarta.persistence.*;
 
 @Entity// JPA annotation to mark this class as a database entity
 public class Person {
-
+// model class for Person. Gets mildly complex in the sense that we needed to differentiate between users and admins
+// which is where isAdmin comes in. Simply creating a boolean attribute that tells Spring literally isAdmin = true or false allowing for me
+// to then do things based on the isAdmin = true or false values... particularly relevant for the session handling, also involving the differentiation of a User and Admin at the login/BCrypt stage. 
+// Also involving Thymeleaf conditional rendering of admin features in the HTML pages, among others. 
+// This is a great example of how we can add attributes to our model classes and then use those attributes in various ways across the project.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

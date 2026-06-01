@@ -37,7 +37,7 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
-    public void deleteCategory(Long id) {
+    public void deleteCategory(@NonNull Long id) {
         categoryRepository.deleteById(id);
     }
 }
