@@ -10,10 +10,11 @@ import com.bit235.repository.PersonRepository;
 
 @Service
 public class PersonService {
-
+// Service class for Person. Handles business logic.
+// Introduc the passwordEncoder to hash passwords and the personRepository to interact with the database.
     private final PersonRepository personRepository;
     private final PasswordEncoder passwordEncoder;
-
+// now we use it inside the constructor. to "set the tone" of the PersonService class.
     public PersonService(
             PersonRepository personRepository,
             PasswordEncoder passwordEncoder
@@ -24,33 +25,38 @@ public class PersonService {
                 passwordEncoder;
     }
 
-  // 🔹 Login
-public Person login(
-        String username,
-        String password
-) {
+        // Login method. Very straifht forward. username, password, except we introduce the passwordEncoder
+        // and BCrypt hashing for security reasons.
+        public Person login(
+                String username,
+                String password
+        ) {
 
-    // TEMP: generate BCrypt hash for "1"
-    System.out.println(
-            "TEMP HASH FOR 1: "
-            + passwordEncoder.encode("1")
-    );
+        // TEMP: generate BCrypt hash for "1"
+        // during the development and heuristic approach to the admin flow I added
+        // a ExistomPerson save method which actually wrote over the data, to find it we added a TEMP HASH printout, 
+        // which I have left in place for demonstration and possible furture use with demonstrations and usage on different
+        // computers.
+        System.out.println(
+                "TEMP HASH FOR 1: "
+                + passwordEncoder.encode("1")
+        );
 
-    debugUsers();
+        debugUsers();
 
-    System.out.println(
-            "========== LOGIN ATTEMPT =========="
-    );
+        System.out.println(
+                "========== LOGIN ATTEMPT =========="
+        );
 
-    System.out.println(
-            "USERNAME ENTERED: "
-            + username
-    );
+        System.out.println(
+                "USERNAME ENTERED: "
+                + username
+        );
 
-    System.out.println(
-            "PASSWORD ENTERED: "
-            + password
-    );
+        System.out.println(
+                "PASSWORD ENTERED: "
+                + password
+        );
 
     Person person =
             personRepository
@@ -60,14 +66,14 @@ public Person login(
                     .orElse(null);
 
     if (person == null) {
-
+// self explanatory, if person is null, then user was not found. Handle gracefully.
         System.out.println(
                 "USER NOT FOUND"
         );
 
         return null;
     }
-
+//this returns the user that was found, again, allowing for a terminal visuall demonstration of what is going on for testing and for demonstration purposes.
     System.out.println(
             "FOUND USER: "
             + person.getUsername()
@@ -117,7 +123,9 @@ public Person login(
                 person
         );
     }
-
+// this is a great little method to get the Person by ID and then
+// return it. It allows for me to show how we use findBy and to display what we found in the terminal.
+// it also helps with the testing and debugging.
         public Person getPersonById(@NonNull Long id) {
         return personRepository
                 .findById(id)
@@ -158,8 +166,8 @@ public Person login(
                 }
 
                 public void saveExistingUser(
-        Person updatedPerson
-) {
+                Person updatedPerson
+        ) {
 
                 Long id = updatedPerson.getId();
 
@@ -167,33 +175,31 @@ public Person login(
                         return;
                 }
 
-    Person existingPerson =
-            personRepository
-                    .findById(
-                                                                id
-                    )
-                    .orElse(null);
+                Person existingPerson =
+                        personRepository
+                                .findById(id)                    
+                                .orElse(null);
 
-    if (existingPerson != null) {
+                if (existingPerson != null) {
 
-        // prevent password being lost
-        if (
-            updatedPerson.getPassword()
-            == null
-            || updatedPerson
-                    .getPassword()
-                    .isBlank()
-        ) {
+                        // prevent password being lost
+                        if (
+                        updatedPerson.getPassword()
+                        == null
+                        || updatedPerson
+                                .getPassword()
+                                .isBlank()
+                        ) {
 
-            updatedPerson.setPassword(
-                    existingPerson
-                            .getPassword()
-            );
+                        updatedPerson.setPassword(
+                                existingPerson
+                                        .getPassword()
+                        );
+                        }
+
+                        personRepository.save(
+                                updatedPerson
+                        );
+                }
         }
-
-        personRepository.save(
-                updatedPerson
-        );
-    }
-}
         }
