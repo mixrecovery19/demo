@@ -50,9 +50,8 @@ public class LoginController {
                 model.addAttribute("isAdmin", user != null && Boolean.TRUE.equals(user.getIsAdmin()));            
         
         // loads all images so the home page can display and javascript function can access them
-        Resource[] files =
-                new PathMatchingResourcePatternResolver()
-                        .getResources("classpath:/static/images/*");                     
+        Resource[] files = new PathMatchingResourcePatternResolver()
+                                .getResources("classpath:/static/images/*");                     
 
         List<String> images =
                 Arrays.stream(files)
@@ -67,7 +66,6 @@ public class LoginController {
         Article featuredArticle =
                 articleService
                         .getRandomArticle();
-
                         model.addAttribute("featuredArticle", featuredArticle);        
 
                 return "index";
@@ -75,8 +73,7 @@ public class LoginController {
 
         // 🔹 Login Page
         @GetMapping("/login")
-        public String showLogin(Model model) {              
-
+        public String showLogin(Model model) {            
                 model.addAttribute("person", new Person());                
 
                 return "login";
@@ -99,7 +96,6 @@ public class LoginController {
 
             return "redirect:/";
         }
-
                 model.addAttribute("error", "Invalid username or password");       
 
                 return "login";

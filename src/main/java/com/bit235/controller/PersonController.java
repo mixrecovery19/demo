@@ -14,19 +14,14 @@ public class PersonController {
 
     public PersonController(PersonService personService)
     {
-        this.personService =
-                personService;
+        this.personService = personService;
     }
 
     // handles the http GET request for the create user accont for, literallly passing an empty Person object in prepartion for the form to be filled out and submitted
     @GetMapping("/create-user-account")
     public String showCreateUserForm(Model model)
     {
-
-        model.addAttribute(
-                "person",
-                new Person()
-        );
+        model.addAttribute("person", new Person());     
 
         return "createForm";
     }
@@ -37,9 +32,7 @@ public class PersonController {
     {
         // normal user only
         person.setAdmin(false);
-        personService.savePerson(
-                person
-        );
+        personService.savePerson(person);        
 
         return "redirect:/login";
     }

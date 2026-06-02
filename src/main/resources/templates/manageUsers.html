@@ -1,69 +1,36 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width,
-                   initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users</title>
-
-    <link rel="stylesheet"
-          href="/css/stylesSideBar.css">
-
-    <link rel="stylesheet"
-          href="/css/stylesManageUsers.css">
-
+    <link rel="stylesheet" href="/css/stylesSideBar.css">
+    <link rel="stylesheet" href="/css/stylesManageUsers.css">
 </head>
-
 <body>
-
 <div class="app-layout">
-
     <!-- Sidebar -->
     <div th:replace="~{sidebar :: sidebar}">
     </div>
-
     <!-- Main Content -->
     <main class="main-content">
-
         <div class="home-container">
-
             <!-- Hero -->
             <section class="hero-section">
-
                 <h1>Manage Users</h1>
-
-                <p class="tagline">
-                    Review, edit,
-                    and remove user accounts.
-                </p>
-
+                <p class="tagline">Review, edit, and remove user accounts.</p>               
             </section>
-
             <!-- Admin Status -->
             <section class="status-card">
-
                 <strong>Administrator Access</strong>
 
-                <p>
-                    Logged in as
-                    <span th:text="${user.username}">
-                    </span>
-                </p>
-
+                <p>Logged in as <span th:text="${user.username}"></span></p>                  
             </section>
 
             <!-- User Table -->
             <section class="hero-card">
-
                 <h2>Registered Users</h2>
-
                 <table class="users-table">
-
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -75,23 +42,14 @@
                     </thead>
 
                     <tbody>
-
                         <tr th:each="person : ${users}">
+                            <td th:text="${person.id}"></td>
+                            <td th:text="${person.username}">Username</td>
 
-                            <td th:text="${person.id}">
-                            </td>
-
-                            <td th:text="${person.username}">
-                            </td>
-
-                            <td th:text="${person.givenname}">
-                            </td>
-
-                            <td th:text="${person.familyname}">
-                            </td>
+                            <td th:text="${person.givenname}">Given Name</td>
+                            <td th:text="${person.familyname}">Family Name</td>                           
 
                             <td class="actions">
-
                                 <a class="edit-btn"
                                    th:href=
                                    "@{/admin/users/edit/{id}

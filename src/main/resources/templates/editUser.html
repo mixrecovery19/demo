@@ -1,76 +1,42 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width,
-                   initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki Home</title>
-
-    <link rel="stylesheet"
-          href="/css/stylesSideBar.css">
-
-    <link rel="stylesheet"
-          href="/css/stylesUserAndLoginForms.css">
-          
+    <link rel="stylesheet" href="/css/stylesSideBar.css">
+    <link rel="stylesheet" href="/css/stylesUserAndLoginForms.css">          
 </head>
-
 <body>
-
 <div class="app-layout">
     <!-- 🔹 Reusable Sidebar -->
     <div th:replace="~{sidebar :: sidebar}">
-    </div>
+</div>
+       <main class="main-content">
+              <div class="container">
+              <h1>Edit User</h1>
+                     <form th:action="@{/admin/users/update}" th:object="${person}" method="post" class="form-group">
+                     <input type="hidden" th:field="*{id}">
+                     <label for="username">Username</label>
 
-<main class="main-content">
-    <div class="container">
-        <h1>Edit User</h1>
-        <form th:action="@{/admin/users/update}"
-              th:object="${person}"
-              method="post"
-              class="form-group">
+                     <input type="text" id="username" th:field="*{username}" title="Username cannot be changed" readonly>
+                     <label for="givenname">Given Name</label>
 
-            <input type="hidden"
-                   th:field="*{id}">
+                     <input type="text" id="givenname" th:field="*{givenname}" title="Enter the user's given name">
+                     <label for="familyname">Family Name</label>
 
-            <input type="text"
-                   id="username"
-                   th:field="*{username}"
-                   placeholder="Username">
+                     <input type="text" id="familyname" th:field="*{familyname}" title="Enter the user's family name">
+                     <label for="biography">Biography:</label>
 
-            <input type="text"
-                   id="givenname"
-                   th:field="*{givenname}"
-                   placeholder="Given Name">
+                     <textarea id="biography" th:field="*{biography}" rows="6" title="Enter a brief biography for the user"></textarea>
 
-            <input type="text"
-                   id="familyname"
-                   th:field="*{familyname}"
-                   placeholder="Family Name">
-
-            <textarea id="biography"
-                      th:field="*{biography}"
-                      placeholder="Enter biography"
-                      rows="6">
-            </textarea>
-
-            <button type="submit"
-                    class="btn-primary">
-                Save Changes
-            </button>
-
+            <button type="submit" class="btn-primary">Save Changes</button>
         </form>
         <div class="button-group">
-
-       <a th:href="@{/admin/users}"
-              class="btn-secondary link-button"
-              onclick="return confirm('Discard changes?')">Cancel</a>
-       </div>
+             <a th:href="@{/admin/users/delete/{id}(id=${person.id})}" class="btn-secondary delete-btn" onclick="return confirm('Are you sure you want to delete this user?')">Delete User</a>
+             <a th:href="@{/admin/users}" class="btn-secondary link-button" onclick="return confirm('Discard changes?')">Cancel</a>
+        </div>
     </div>
-</main>
+</main>    
 </body>
 </html>

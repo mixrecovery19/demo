@@ -8,147 +8,91 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-public class AdminController {
+        @Controller
+        public class AdminController {
 
-    private final PersonService personService;
+        private final PersonService personService;
 
-    public AdminController(PersonService personService) {
-        this.personService = personService;
-    }
-
-    private boolean isAdmin(HttpSession session) {
-        Person user =
-                (Person) session.getAttribute("user");
-
-        return user != null
-                && "1".equals(user.getUsername());
-    }
-
-    @GetMapping("/admin")
-    public String adminDashboard(
-            Model model,
-            HttpSession session
-    ) {
-
-        if (!isAdmin(session)) {
-            return "redirect:/login";
+        public AdminController(PersonService personService) {
+                this.personService = personService;
         }
 
-        Person user =
-                (Person) session
-                        .getAttribute("user");
+        private boolean isAdmin(HttpSession session) {
+                Person user = (Person) session.getAttribute("user");
 
-        model.addAttribute(
-                "user",
-                user
-        );
-
-        model.addAttribute(
-                "users",
-                personService.findAll()
-        );
-
-        return "adminDashboard";
-    }
-
-   @GetMapping("/admin/users")
-    public String manageUsers(
-            Model model,
-            HttpSession session
-    ) {
-
-        if (!isAdmin(session)) {
-            return "redirect:/login";
+                return user != null && "1".equals(user.getUsername());
         }
 
-        Person user =
-                (Person) session
-                        .getAttribute("user");
+        @GetMapping("/admin")
+        public String adminDashboard(Model model, HttpSession session)
+                {
+                        if (!isAdmin(session)) {
+                        return "redirect:/login";
+                        }
 
-        model.addAttribute(
-                "user",
-                user
-        );
+                        Person user = (Person) session.getAttribute("user");
+                        model.addAttribute("user", user);       
+                        model.addAttribute("users", personService.findAll());        
 
-        model.addAttribute(
-                "users",
-                personService.findAll()
-        );
+                        return "adminDashboard";
+                }
 
-        return "manageUsers";
-    }
+        @GetMapping("/admin/users")
+        public String manageUsers(Model model, HttpSession session)
+                {
+                        if (!isAdmin(session)) {
+                        return "redirect:/login";
+                        }
 
-    @GetMapping("/admin/users/edit/{id}")
-    public String editUserForm(
-            @PathVariable @NonNull Long id,
-            Model model,
-            HttpSession session
-    ) {
+                        Person user = (Person) session.getAttribute("user");
 
-        if (!isAdmin(session)) {
-            return "redirect:/login";
-        }
+                        model.addAttribute("user", user);           
+                        model.addAttribute("users", personService.findAll());        
 
-        Person user =
-                (Person) session
-                        .getAttribute("user");
+                        return "manageUsers";
+                }
 
-        model.addAttribute(
-                "user",
-                user
-        );
+        @GetMapping("/admin/users/edit/{id}")
+        public String editUserForm(@PathVariable @NonNull Long id, Model model, HttpSession session)
+                {
 
-        model.addAttribute(
-                "person",
-                personService.findById(id)
-        );
+                        if (!isAdmin(session)) {
+                        return "redirect:/login";
+                        }
 
-        return "editUser";
-    }
+                        Person user = (Person) session.getAttribute("user");
 
-    @PostMapping("/admin/users/update")
-    public String updateUser(
-            @ModelAttribute Person person,
-            HttpSession session
-    ) {
-        if (!isAdmin(session)) {
-            return "redirect:/login";
-        }
+                        model.addAttribute("user", user);       
+                        model.addAttribute("person", personService.findById(id));        
 
-        personService.saveExistingUser(person);
+                        return "editUser";
+                }
 
-        return "redirect:/admin/users";
-    }
+        @PostMapping("/admin/users/update")
+        public String updateUser(@ModelAttribute Person person, HttpSession session)
+                {
+                        if (!isAdmin(session)) {
+                        return "redirect:/login";
+                        }
 
- @GetMapping("/admin/users/delete/{id}")
-public String deleteUser(
-        @PathVariable Long id
-) {
+                        personService.saveExistingUser(person);
 
-    System.out.println(
-            "================================="
-    );
+                        return "redirect:/admin/users";
+                }
 
-    System.out.println(
-            "DELETE BUTTON REACHED CONTROLLER"
-    );
+        @GetMapping("/admin/users/delete/{id}")
+        public String deleteUser(@PathVariable Long id)
+                {
 
-    System.out.println(
-            "USER ID TO DELETE: "
-            + id
-    );
+                System.out.println("=================================");   
+                System.out.println("DELETE BUTTON REACHED CONTROLLER");   
+                System.out.println("USER ID TO DELETE: " + id);    
 
-    personService.deleteById(id);
+                personService.deleteById(id);
 
-    System.out.println(
-            "CONTROLLER FINISHED"
-    );
+                System.out.println("CONTROLLER FINISHED");
+                System.out.println("=================================");    
 
-    System.out.println(
-            "================================="
-    );
-
-    return "redirect:/admin/users";
-}
+                return "redirect:/admin/users";
+                }
 }

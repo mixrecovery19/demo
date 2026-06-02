@@ -69,14 +69,10 @@ public class ArticleController {
      * This is preferred over @Autowired
      * because it is cleaner and safer.
      */
-    public ArticleController(
-            ArticleService articleService,
-            CategoryService categoryService
-    ) {
-        this.articleService =
-                articleService;
-        this.categoryService =
-                categoryService;
+    public ArticleController(ArticleService articleService, CategoryService categoryService)
+    {
+        this.articleService = articleService;
+        this.categoryService = categoryService;
     }
 
     /*
@@ -91,42 +87,17 @@ public class ArticleController {
      * to the Thymeleaf template.
      */
     @GetMapping("/articles")
-    public String showArticles(
-            Model model,
-            HttpSession session
-    ) {
+    public String showArticles(Model model, HttpSession session)
+    {
+        //sessions object is being used to check if the user is logged in and to pass user information to view
+        // this is common practise in many controllers.
+        Person user = (Person) session.getAttribute("user");
 
-        /*
-         * Session stores temporary user data
-         * while the user is logged in.
-         *
-         * Here we retrieve the currently
-         * logged-in user.
-         */
-        Person user =
-                (Person) session
-                        .getAttribute("user");
-
-        /*
-         * Debugging output.
-         *
-         * Useful during development to confirm:
-         * - who is logged in
-         * - whether articles are loading
-         *
-         * System.out.println() is commonly used
-         * during development but normally removed
-         * or replaced with logging in production.
-         */
-        System.out.println(
-            "LOGGED USER: "
-            + (user != null
-               ? user.getUsername()
-               : "Guest")
-        );
-
-        System.out.println(
-            "ARTICLES FOUND: "
+        //debugging and testing... left in place for visual representation of how session information is being used.
+        System.out.println("LOGGED USER: " + (user != null ? user.getUsername() : "Guest"));        
+//debugging and testing... also as an example of how a method can be written and the objects do not need articleService.getAllArticles() 
+// that Java allows for both variations even articleService.getAllArticles().size() is valid.
+        System.out.println("ARTICLES FOUND: " 
             + articleService
                     .getAllArticles()
                     .size()
@@ -140,17 +111,8 @@ public class ArticleController {
          * ${user}
          * ${articles}
          */
-        model.addAttribute(
-                "user",
-                user
-        );
-
-        model.addAttribute(
-                "articles",
-                articleService
-                        .getAllArticles()
-        );
-
+        model.addAttribute("user", user);       
+        model.addAttribute("articles", articleService.getAllArticles());       
         /*
          * Returns articleList.html
          */
@@ -166,82 +128,37 @@ public class ArticleController {
      * Login is required.
      */
     @GetMapping("/articles/new")
-    public String showArticleForm(
-            Model model,
-            HttpSession session
-    ) {
-
-        Person user =
-                (Person) session
-                        .getAttribute("user");
-
-        /*
-         * Security check.
-         *
-         * If not logged in,
-         * redirect to login page.
-         *
-         * redirect: prevents users
-         * accessing restricted pages
-         * directly.
-         */
+    public String showArticleForm(Model model, HttpSession session)
+    {
+        Person user = (Person) session.getAttribute("user");
+        /* Security check. If not logged in, redirect to login page.
+         * redirect: prevents users accessing restricted pages directly. */         
         if (user == null) {
             return "redirect:/login";
         }
 
-        model.addAttribute(
-                "user",
-                user
-        );
+        model.addAttribute("user", user);       
 
         /*
          * Empty Article object
          * is provided to bind
          * the HTML form data.
          */
-        model.addAttribute(
-                "article",
-                new Article()
-        );
-
-        /*
-         * Load categories so they
-         * can appear in a dropdown.
-         */
-        model.addAttribute(
-            "categories",
-            categoryService.getAllCategories()
-        );
+        model.addAttribute("article", new Article());      
+        //Load categories so they can appear in a dropdown.
+        model.addAttribute("categories", categoryService.getAllCategories());        
 
         return "articleForm";
     }
 
-    /*
-     * SAVE ARTICLE
-     * ------------------------
-     * Handles form submission.
-     *
-     * This method supports BOTH:
-     * - creating new articles
-     * - updating existing articles
-     *
-     * POST is used because
-     * data is being changed.
-     */
     @PostMapping("/articles/save")
-    public String saveArticle(
-            Article article,
-            HttpSession session
-    ) {
-
-        Person user =
-                (Person) session
-                        .getAttribute("user");
+    public String saveArticle(Article article, HttpSession session)
+    {
+        Person user = (Person) session.getAttribute("user");
 
         if (user == null) {
             return "redirect:/login";
         }
-
         /*
          * If ID is null,
          * this is a NEW article.
@@ -250,86 +167,37 @@ public class ArticleController {
          * logged-in user as author.
          */
         if (article.getId() == null) {
-
             article.setAuthor(user);
-
         }
-
-        /*
-         * Otherwise this is
-         * an EXISTING article.
-         */
         else {
-
             Article existingArticle =
                     articleService
-                            .getArticleById(
-                                    Objects.requireNonNull(article.getId())
-                            );
+                            .getArticleById(Objects.requireNonNull(article.getId()));                            
 
             if (existingArticle == null) {
                 return "redirect:/articles";
-            }
-
-            /*
-             * Preserve original author.
-             *
-             * Prevents users from changing
-             * article ownership during edit.
-             */
-            article.setAuthor(
-                    existingArticle.getAuthor()
-            );
+            }            
+             //Preserve original author. Prevents users from changing article ownership during edit.             
+            article.setAuthor(existingArticle.getAuthor());
+            
         }
+        /** Service layer handles save logic. */
+        articleService.saveArticle(article);       
 
-        /*
-         * Service layer handles save logic.
-         */
-        articleService.saveArticle(
-                article
-        );
-
-        /*
-         * Redirect after POST.
-         *
-         * Prevents duplicate form submission
-         * if the browser refreshes.
-         */
         return "redirect:/articles";
     }
 
-    /*
-     * EDIT ARTICLE
-     * ------------------------
-     * Loads an existing article
-     * into the form for editing.
-     */
     @GetMapping("/articles/edit/{id}")
-    public String editArticle(
-            @PathVariable long id,
-            Model model,
-            HttpSession session
-    ) {
+    public String editArticle(@PathVariable long id, Model model, HttpSession session)
+    {
 
-        Person user =
-                (Person) session
-                        .getAttribute("user");
+        Person user = (Person) session.getAttribute("user");
 
         if (user == null) {
             return "redirect:/login";
-        }
-
-        /*
-         * PathVariable extracts the
-         * ID from the URL.
-         *
-         * Example:
-         * /articles/edit/5
-         * → id = 5
-         */
-        Article article =
-                articleService
-                        .getArticleById(id);
+        }        
+         //PathVariable extracts the ID from the URL.        
+        Article article = articleService.getArticleById(id);                    
 
         if (article == null) {
             return "redirect:/articles";
@@ -348,30 +216,15 @@ public class ArticleController {
         boolean canEdit =
                 user.getIsAdmin()
                 ||
-                Objects.equals(
-                        article.getAuthor().getId(),
-                        user.getId()
-                );
+                Objects.equals(article.getAuthor().getId(), user.getId());                
 
         if (!canEdit) {
             return "redirect:/articles";
         }
 
-        model.addAttribute(
-                "user",
-                user
-        );
-
-        model.addAttribute(
-                "article",
-                article
-        );
-
-        model.addAttribute(
-                "categories",
-                categoryService
-                        .getAllCategories()
-        );
+        model.addAttribute("user", user);      
+        model.addAttribute("article", article);        
+        model.addAttribute("categories", categoryService.getAllCategories());        
 
         return "articleForm";
     }
@@ -385,59 +238,40 @@ public class ArticleController {
      * admin OR article author.
      */
     @GetMapping("/articles/delete/{id}")
-    public String deleteArticle(
-            @PathVariable Long id,
-            HttpSession session
-    ) {
+    public String deleteArticle(@PathVariable Long id, HttpSession session)
+    {
+        Person user = (Person) session.getAttribute("user");
 
-        Person user =
-                (Person) session
-                        .getAttribute("user");
+                if (user == null) {
+                return "redirect:/login";
+                }
 
-        if (user == null) {
-            return "redirect:/login";
-        }
+                if (id == null) {
+                return "redirect:/articles";
+                }
 
-        if (id == null) {
-            return "redirect:/articles";
-        }
+        Article article = articleService.getArticleById(id);
 
-        Article article =
-                articleService
-                        .getArticleById(id);
-
-        if (article == null) {
-            return "redirect:/articles";
-        }
+                if (article == null) {
+                return "redirect:/articles";
+                }
 
         boolean canDelete =
                 user.getIsAdmin()
                 ||
-                Objects.equals(
-                        article.getAuthor().getId(),
-                        user.getId()
-                );
+                Objects.equals(article.getAuthor().getId(), user.getId());                
 
         if (!canDelete) {
             return "redirect:/articles";
         }
-
-        /*
-         * try/catch prevents
-         * application crashes
-         * if deletion fails.
-         */
+        /* try/catch prevents application crashes if deletion fails. */         
         try {
 
-            articleService
-                    .deleteArticle(id);
+            articleService.deleteArticle(id);
 
         } catch (Exception e) {
 
-            throw new IllegalStateException(
-                    "Unable to delete article",
-                    e
-            );
+            throw new IllegalStateException("Unable to delete article", e);            
         }
 
         return "redirect:/articles";

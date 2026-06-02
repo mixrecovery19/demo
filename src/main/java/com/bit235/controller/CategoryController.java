@@ -104,24 +104,17 @@ public class CategoryController {
      * which Thymeleaf binds to the HTML form.
      */
     @GetMapping("/new")
-    public String showCreateForm(
-            Model model,
-            HttpSession session
-    ) {
+    public String showCreateForm(Model model, HttpSession session)
+    {
         Boolean isAdmin =
-                (Boolean) session.getAttribute(
-                        "isAdmin"
-                );
+                (Boolean) session.getAttribute("isAdmin");                
 
         // Basic access control
         if (isAdmin == null || !isAdmin) {
             return "redirect:/login";
         }
 
-        model.addAttribute(
-                "category",
-                new Category()
-        );
+        model.addAttribute("category", new Category());        
 
         return "categoryForm";
     }
