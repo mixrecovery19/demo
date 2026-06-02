@@ -41,27 +41,19 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/categories")
 public class CategoryController {
 
-    /*
-     * Service dependency.
-     *
-     * The Controller communicates with the Service layer
-     * rather than directly accessing the Repository.
-     * This supports separation of concerns in MVC.
-     */
     private final CategoryService categoryService;
-
-    /*
-     * Constructor Injection
-     *
+    /*    
      * Spring automatically provides an instance of
      * CategoryService at runtime.
      *
      * This is an example of Dependency Injection (DI),
      * an important OOP principle that reduces tight coupling.
+     * That is the correct way of saying that during run time Spring will insert
+     * the "things" required to make the class work. This this case that is relatively simple passing 
+     * of Category Service to the constructor which is locatedin the Servie layer
      */
-    public CategoryController(
-            CategoryService categoryService
-    ) {
+    public CategoryController(CategoryService categoryService)
+    {
         this.categoryService =
                 categoryService;
     }
@@ -85,17 +77,12 @@ public class CategoryController {
      * inside the categories.html page.
      */
     @GetMapping
-    public String listCategories(
-            Model model
-    ) {
+    public String listCategories(Model model)
+        {
+                model.addAttribute("categories", categoryService.getAllCategories());        
 
-        model.addAttribute(
-                "categories",
-                categoryService.getAllCategories()
-        );
-
-        return "categories";
-    }
+                return "categories";
+        }
 
     /*
      * Display Create Category Form
@@ -156,47 +143,33 @@ public class CategoryController {
      * submissions when the browser refreshes.
      */
     @PostMapping("/save")
-    public String saveCategory(
-            @ModelAttribute Category category
-    ) {
+    public String saveCategory(@ModelAttribute Category category) 
+    {
         // Defensive check
         if (category != null) {
-
-            categoryService.saveCategory(
-                    category
-            );
+            categoryService.saveCategory(category);
+            
         }
         return "redirect:/categories";
     }
 
-    /*
-     * Delete Category
-     *
-     * URL Example:
-     * /categories/delete/1
-     *
-     * @PathVariable extracts the ID value
-     * directly from the URL.
-     *
-     * Session check ensures only Admin users
-     * can delete categories.
-     */
+    // delete category by id is not really set up in place
+    // it allows for a category to be deleted throught the article managment yet there is
+    // no category management page, which is something we could easily add with scale
+    // this project only allows the admin to delete users, articles, categories are fixed and there is intentionally no front
+    // end way that a admin can delete or edit a category.
+    // we still have the method in place and we can also see the use of both @PathVariable, @NotNull and also the redirect 
+    // flow which prevents duplicate form submissions and also allows for a better user experience as well as security reasons.
     @GetMapping("/delete/{id}")
-    public String deleteCategory(
-            @PathVariable @NonNull Long id,
-            HttpSession session
-    ) {
+    public String deleteCategory(@PathVariable @NonNull Long id, HttpSession session)
+    {
 
-        Boolean isAdmin =
-                (Boolean) session.getAttribute(
-                        "isAdmin"
-                );
+        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");               
 
         // Restrict access to Admin users only
         if (isAdmin == null || !isAdmin) {
             return "redirect:/login";
         }
-
         categoryService.deleteCategory(id);
 
         return "redirect:/categories";

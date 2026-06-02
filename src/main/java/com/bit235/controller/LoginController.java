@@ -31,99 +31,61 @@ public class LoginController {
     private final PersonService personService;
     private final ArticleService articleService;
 
-    public LoginController(
-            PersonService personService,
-            ArticleService articleService
-    ) {
-        this.personService =
-                personService;
-        this.articleService =
-                articleService;
+    public LoginController(PersonService personService, ArticleService articleService)
+    {
+        this.personService = personService;
+        this.articleService = articleService;
     }
 
         //method to display the home page, it also passes session information to the view and loads dynamic content such as images and a featured article
         @GetMapping("/")
-                public String home(
-                        Model model,
-                        HttpSession session
-                ) throws IOException {
+                public String home(Model model, HttpSession session)
+                throws IOException {
         //using person object to store the user information in the session and pass it to the view
         //mildly confusing because we really must create a Person Class prior to being able to use it as an object
-        Person user =
-                (Person) session
-                        .getAttribute(
-                                "user"
-                        );
+        Person user = 
+                (Person) session.getAttribute("user");                       
 
-        model.addAttribute(
-                "user",
-                user
-        );
-
-        model.addAttribute(
-                "isAdmin",
-                user != null
-                && Boolean.TRUE.equals(
-                        user.getIsAdmin()
-                )
-        );
-
+                model.addAttribute("user", user);      
+                model.addAttribute("isAdmin", user != null && Boolean.TRUE.equals(user.getIsAdmin()));            
+        
         // loads all images so the home page can display and javascript function can access them
         Resource[] files =
                 new PathMatchingResourcePatternResolver()
-                        .getResources(
-                                "classpath:/static/images/*"
-                        );
+                        .getResources("classpath:/static/images/*");                     
 
         List<String> images =
                 Arrays.stream(files)
-                        .map(file ->
-                                "/images/"
-                                + file.getFilename()
-                        )
+                        .map(file -> "/images/" + file.getFilename())                        
                         .toList();
 
-        model.addAttribute(
-                "images",
-                images
-        );
+                model.addAttribute("images", images);                
+        
         //introduces the Feature Article to the home page. Created in ArticleService.
         // a great visual example of how we create a method in the Service layer, then call it through the Controller layer
         // to pass on as required to eventually be displayed through Thymeleaf in the View layer. 
         Article featuredArticle =
-        articleService
-                .getRandomArticle();
+                articleService
+                        .getRandomArticle();
 
-        model.addAttribute(
-                "featuredArticle",
-                featuredArticle
-        );
+                        model.addAttribute("featuredArticle", featuredArticle);        
 
-        return "index";
+                return "index";
         }
 
         // 🔹 Login Page
         @GetMapping("/login")
-        public String showLogin(
-                Model model
-        ) {
+        public String showLogin(Model model) {              
 
-                model.addAttribute(
-                        "person",
-                        new Person()
-                );
+                model.addAttribute("person", new Person());                
 
                 return "login";
         }
 
         // 🔹 Login Action
         @PostMapping("/login")
-        public String handleLogin(
-                Person formUser,
-                Model model,
-                HttpSession session
-        ) {
-
+        public String handleLogin(Person formUser, Model model, HttpSession session)
+        {
         Person loggedInUser =
                 personService.login(
                         formUser.getUsername(),
@@ -132,33 +94,29 @@ public class LoginController {
 
         if (loggedInUser != null) {
 
-            session.setAttribute(
-                    "user",
-                    loggedInUser
-            );
-
-            session.setAttribute(
-                    "isAdmin",
-                    loggedInUser.getIsAdmin()
-            );
+            session.setAttribute("user", loggedInUser);           
+            session.setAttribute("isAdmin", loggedInUser.getIsAdmin());           
 
             return "redirect:/";
         }
 
-        model.addAttribute(
-                "error",
-                "Invalid username or password"
-        );
+                model.addAttribute("error", "Invalid username or password");       
 
-        return "login";
-    }
+                return "login";
+        }
 
-    // 🔹 Logout
+// another key part of this module was to understand what redirect does, why we use it in place of a return as well as
+// what session.inavlidate() does and why we use it. Session invalidation is important for security reasons,
+// it allows for us to clear the session data and let the program know that the user is no longer logged in.
+// Sessions are important for feel and functionality as they prevent continual login requirments
+// which actually allows for a personalized feel to your project.
+// redirect is important because it in effect tells the program, Spring to use GET instead of POST.
+// that is the main reason, which what that does is allows for users to be redirected through a GET request instead of a POST request, which
+// would actually treat it as a form submission. So in a sense that was the long way of saying it prevents duplicate form submissions
+// which is important for user experience and security reasons.
     @GetMapping("/logout")
-    public String logout(
-            HttpSession session
-    ) {
-
+    public String logout(HttpSession session)
+    {
         session.invalidate();
 
         return "redirect:/";

@@ -1,4 +1,4 @@
-package com.bit235.model;
+/*package com.bit235.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +11,6 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
 
     public Country() {
@@ -29,3 +28,4 @@ public class Country {
         return name;
     }
 }
+*/

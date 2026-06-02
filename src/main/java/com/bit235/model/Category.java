@@ -5,11 +5,9 @@ import jakarta.persistence.*;
 // less complext version of Articles allowing us to see a simpler model class.
 @Entity
 public class Category {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
 
     @Column(length = 1000)
@@ -22,7 +20,6 @@ public class Category {
         this.name = name;
         this.description = description;
     }
-
     // Getters and Setters
     public Long getId() {
         return id;
@@ -31,22 +28,17 @@ public class Category {
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
     // we could either add more attributes to Category, for example, with scale I would add an edit Category, Country, User etc. to the Admin Dashboard.
-    
-}
+    }

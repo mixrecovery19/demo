@@ -99,14 +99,18 @@
                                     Edit
                                 </a>
 
-                                <a class="delete-btn"
-                                   th:href=
-                                   "@{/admin/users/delete/{id}
-                                   (id=${person.id})}"
+                               <a class="delete-btn"
+                                th:href=
+                                "@{/admin/users/delete/{id}
+                                (id=${person.id})}"
 
-                                   onclick=
-                                   "return confirm(
-                                   'Delete this user?');">
+                                onclick="
+                                console.log(
+                                    'DELETE BUTTON CLICKED'
+                                );
+                                return confirm(
+                                    'Delete this user?'
+                                );">
                                     Delete
                                 </a>
 

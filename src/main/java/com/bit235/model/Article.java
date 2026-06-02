@@ -6,11 +6,9 @@ import jakarta.persistence.*;
 
 @Entity
 public class Article {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
 
     @Column(columnDefinition = "TEXT")
@@ -63,10 +61,10 @@ public class Article {
     private Category category;
     public Category getCategory() {
     return category;
-}
-// setter for Category... we could add elements and attributes to our Category class quite easily once
-// setters and getteers are in place.
-public void setCategory(Category category) {
-    this.category = category;
-}
+    }
+    // setter for Category... we could add elements and attributes to our Category class quite easily once
+    // setters and getteers are in place.
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

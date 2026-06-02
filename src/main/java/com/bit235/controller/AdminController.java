@@ -121,17 +121,34 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/admin/users/delete/{id}")
-    public String deleteUser(
-            @PathVariable @NonNull Long id,
-            HttpSession session
-    ) {
-        if (!isAdmin(session)) {
-            return "redirect:/login";
-        }
+ @GetMapping("/admin/users/delete/{id}")
+public String deleteUser(
+        @PathVariable Long id
+) {
 
-        personService.deleteById(id);
+    System.out.println(
+            "================================="
+    );
 
-        return "redirect:/admin/users";
-    }
+    System.out.println(
+            "DELETE BUTTON REACHED CONTROLLER"
+    );
+
+    System.out.println(
+            "USER ID TO DELETE: "
+            + id
+    );
+
+    personService.deleteById(id);
+
+    System.out.println(
+            "CONTROLLER FINISHED"
+    );
+
+    System.out.println(
+            "================================="
+    );
+
+    return "redirect:/admin/users";
+}
 }

@@ -2,6 +2,7 @@ package com.bit235.model;
 
 import java.time.LocalDate;
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity// JPA annotation to mark this class as a database entity
 public class Person {
@@ -15,27 +16,24 @@ public class Person {
     private Long id;
 
     private String username;
-
     private String password;
-
     private String familyname;
-
     private String givenname;
-
     private Boolean isAdmin = false;
-
     private LocalDate dob;
 
     @Column(columnDefinition = "TEXT")
     private String biography;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "country_id")
-    private Country country;
+    private Country country;*/
 
     public Person() {
     }
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
 
+    private List<Article> articles;
     // 🔹 ID
     public Long getId() {
         return id;
@@ -50,9 +48,8 @@ public class Person {
         return username;
     }
 
-    public void setUsername(
-            String username
-    ) {
+    public void setUsername(String username)
+    {
         this.username = username;
     }
 
@@ -61,9 +58,8 @@ public class Person {
         return password;
     }
 
-    public void setPassword(
-            String password
-    ) {
+    public void setPassword(String password)
+    {
         this.password = password;
     }
 
@@ -72,9 +68,8 @@ public class Person {
         return familyname;
     }
 
-    public void setFamilyname(
-            String familyname
-    ) {
+    public void setFamilyname(String familyname)
+    {
         this.familyname = familyname;
     }
 
@@ -83,9 +78,8 @@ public class Person {
         return givenname;
     }
 
-    public void setGivenname(
-            String givenname
-    ) {
+    public void setGivenname(String givenname)
+    {
         this.givenname = givenname;
     }
 
@@ -94,9 +88,8 @@ public class Person {
         return dob;
     }
 
-    public void setDob(
-            LocalDate dob
-    ) {
+    public void setDob(LocalDate dob)
+    {
         this.dob = dob;
     }
 
@@ -105,21 +98,25 @@ public class Person {
         return biography;
     }
 
-    public void setBiography(
-            String biography
-    ) {
+    public void setBiography(String biography)
+    {
         this.biography = biography;
     }
-
     // 🔹 Country
-    public Country getCountry() {
+    /*public Country getCountry() {
         return country;
     }
-
-    public void setCountry(
-            Country country
-    ) {
+    public void setCountry(Country country)
+    {
         this.country = country;
+    }*/
+    public List<Article> getArticles() {
+    return articles;
+    }
+
+    public void setArticles(List<Article> articles)
+    {
+        this.articles = articles;
     }
 
     // establishes an admin role for the person entity allowing us to differentiate between users and admins in the application
@@ -130,10 +127,9 @@ public class Person {
     public Boolean isAdmin() {
     return isAdmin;
     }
-// The setter for isAdmin allows us to assign admin privileges to a user
-    public void setAdmin(
-            Boolean isAdmin
-    ) {
+    // The setter for isAdmin allows us to assign admin privileges to a user
+    public void setAdmin(Boolean isAdmin)
+    {
         this.isAdmin = isAdmin;
     }
 

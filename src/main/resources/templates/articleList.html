@@ -161,7 +161,7 @@
                     </span>
                 </p>
 
-                <p>
+                <!--<p>
                     <strong>Country:</strong>
 
                     <span th:if="${article.author != null
@@ -173,16 +173,13 @@
                                    or article.author.country == null}">
                         Unknown
                     </span>
-                </p>
-
+                </p>-->
             </div>
-
-            <!-- ADMIN BUTTONS -->
-          <!-- ADMIN BUTTONS -->
+          
             <div class="admin-actions"
                 th:if="${user != null and
                     (
-                    user.isAdmin
+                    user.username == '1'
                     or
                     article.author.id == user.id
                     )}">
@@ -196,6 +193,7 @@
                 class="btn-delete">
                     Delete
                 </a>
+
             </div>
         </section>
 

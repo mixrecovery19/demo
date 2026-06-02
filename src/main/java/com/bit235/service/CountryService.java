@@ -1,4 +1,4 @@
-package com.bit235.service;
+/*package com.bit235.service;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.bit235.model.Country;
@@ -17,4 +17,4 @@ public class CountryService {
     public List<Country> getAllCountries() {
             return countryRepository.findAll();
         }
-    }
+    }*/

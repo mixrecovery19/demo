@@ -1,4 +1,4 @@
-package com.bit235.controller;
+/*package com.bit235.controller;
 
 // Spring MVC imports
 import org.springframework.stereotype.Controller;
@@ -33,7 +33,7 @@ import jakarta.servlet.http.HttpSession;
  * database interaction, no Service or Repository
  * layer is used here.
  */
-@Controller
+/*@Controller
 public class CountryController {
 
     /*
@@ -53,20 +53,13 @@ public class CountryController {
      * Used to temporarily store data that
      * becomes accessible inside country.html.
      */
+    /*
     @GetMapping("/country")
-    public String country(
-            Model model,
-            HttpSession session
-    ) {
-
-        model.addAttribute(
-                "isAdmin",
-                session.getAttribute(
-                        "isAdmin"
-                )
-        );
+    public String country(Model model, HttpSession session)
+    {
+        model.addAttribute("isAdmin", session.getAttribute("isAdmin"));        
         // Return Thymeleaf page:
         // country.html
         return "country";
     }
-}
+}*/

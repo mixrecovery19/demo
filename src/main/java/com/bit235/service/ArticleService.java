@@ -27,15 +27,13 @@ public class ArticleService {
     public void saveArticle(@NonNull Article article) {
         articleRepository.save(article);
     }
-    public void deleteArticle(
-        @NonNull Long id/*Null Safety */
-    ) {
-        articleRepository
-                .deleteById(id);
+    public void deleteArticle(@NonNull Long id)/*Null Safety */
+    {
+        articleRepository 
+            .deleteById(id);
     }
-    public Article getArticleById(
-            @NonNull Long id/*Null Safety */
-    ) {
+    public Article getArticleById(@NonNull Long id)/*Null Safety */
+    {
         return articleRepository
                 .findById(id)
                 .orElse(null);
@@ -53,13 +51,10 @@ public class ArticleService {
 // this is a Random Article gernation method, simply attaches a Random object(in built Java class) to the list of articles, to the ArticleRepository
 // allowing me to use it where I like. In this case in the HomeController which then passes through to the home.html page allowin
 // Thymeleaf to render a random article and display it on the home page as a neat little "Feature Article".
-        Random random =
-                new Random();
+        Random random = new Random();
 
         return articles.get(
-                random.nextInt(
-                        articles.size()
-                )
+                random.nextInt(articles.size())                
         );
     }
 }
