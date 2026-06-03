@@ -1,159 +1,69 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width,
-                   initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki Home</title>
-
-    <link rel="stylesheet"
-          href="/css/stylesSideBar.css">
-
-    <link rel="stylesheet"
-          href="/css/stylesHome.css">
-          
+    <link rel="stylesheet" href="/css/stylesSideBar.css">
+    <link rel="stylesheet" href="/css/stylesHome.css">          
 </head>
-
 <body>
-
 <div class="app-layout">
-
     <!-- 🔹 Reusable Sidebar -->
-    <div th:replace="~{sidebar :: sidebar}">
-    </div>
-
+    <div th:replace="~{sidebar :: sidebar}"></div>
  <!-- 🔹 Main Content -->
 <main class="main-content">
-
     <div class="home-container">      
         <section class="hero-section">
-
             <div class="image-carousel-container">
-
-                <img
-                    id="carouselImage"
-                    class="carousel-image"
-                    alt="Homepage image"
-                >
-
+                <img id="carouselImage" class="carousel-image" alt="Homepage image">              
             </div>
-
             <h1>A Very Broken System</h1>
-
-            <p class="tagline">
-                A wiki documenting dysfunction,
-                bureaucracy, strange systems,
-                and the stories behind them.
-            </p>
-
+            <p class="tagline">A wiki documenting dysfunction, bureaucracy, strange systems,and the stories behind them.</p>            
         </section>
 
         <!-- Login Status -->
         <section class="status-card">
-
-            <div th:if="${user == null}"
-                 class="logged-out">
-
+            <div th:if="${user == null}" class="logged-out">
                 <strong>Guest Access</strong>
-
-                <p>
-                    You are currently browsing
-                    in read-only mode.
-                </p>
-
+                <p>You are currently browsing in read-only mode.</p>               
             </div>
-
-            <div th:if="${user != null}"
-                 class="logged-in">
-
+            <div th:if="${user != null}" class="logged-in">
                 <strong>Logged In</strong>
-
-                <p>
-                    Welcome back,
-                    <span th:text="${user.username}">
-                    </span>
-                </p>
-
+                <p>Welcome back,<span th:text="${user.username}"></span></p>               
             </div>
-
         </section>
 
         <!-- About -->
         <section class="hero-card">
-
             <h2>Wiki Overview</h2>
-
-            <p>
-                Browse articles,
-                explore categories,
-                and examine the many ways
-                systems break, drift,
-                or quietly stop functioning.
-            </p>
-
-            <p>
-                Administrators can log in
-                to create, edit,
-                and manage wiki content.
-            </p>
-
+            <p>Browse articles, explore categories, and examine the many ways systems break, drift, or quietly stop functioning.</p>       
+            <p>Administrators can log in to create, edit, and manage wiki content.</p>      
         </section>
 
         <!-- Future Feature Placeholder -->
         <section class="preview-card">
-
             <h3>Featured Article</h3>
-
-            <div
-                th:if="${featuredArticle != null}"
-            >
-
-                <h4
-                    th:text=
-                    "${featuredArticle.title}">
-                </h4>
-
-                <p
-                    th:text=
-                    "${#strings.abbreviate(
-                        featuredArticle.content,
-                        180
-                    )}">
-                </p>
-
+            <div th:if="${featuredArticle != null}">
+                <h4 th:text="${featuredArticle.title}"></h4>
+                <p th:text="${#strings.abbreviate(featuredArticle.content, 180)}"></p>                      
+            </div>             
+            <div th:if="${featuredArticle == null}">       
+                <p>No articles available.</p>
             </div>
-
-            <div
-                th:if=
-                "${featuredArticle == null}"
-            >
-
-                <p>
-                    No articles available.
-                </p>
-
-            </div>
-
         </section>
-
     </div>
-
 </main>
-
 </div>
-
 </body>
 </html>
+// added some javascript for an example of how we can include JS in Spring projects.
 <script th:inline="javascript">
-
+//cleverly creates an empty array which it then populates from the model attribute.
+// even more cleverly, it looks as though the array is entirely empty and that we have commented out
+// the images variable however Thumeleadf will actually replace the empty array with real data at runtime.
     const myImages =
         /*[[${images}]]*/ [];
 
 </script>
-
 <script src="/js/homePageImageRotation.js"></script>

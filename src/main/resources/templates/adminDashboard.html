@@ -1,118 +1,54 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width,
-                   initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki Home</title>
 
-     <link rel="stylesheet"
-          href="/css/stylesSideBar.css">
-
-    <link rel="stylesheet"
-          href="/css/stylesAdminDashboard.css">
-          
+    <link rel="stylesheet" href="/css/stylesSideBar.css">
+    <link rel="stylesheet" href="/css/stylesAdminDashboard.css">          
 </head>
-
 <body>
-
 <div class="app-layout">
-
     <!-- 🔹 Reusable Sidebar -->
     <div th:replace="~{sidebar :: sidebar}">
     </div>
+    <main class="main-content">
+        <div class="home-container">
+            <!-- Hero -->
+            <section class="hero-section">
+                <h1>Admin Dashboard</h1>
+                <p class="tagline">Manage users, articles, and administrative tools.</p>
+            </section>
+            <!-- Status -->
+            <section class="status-card">
+                <strong>Administrator Access</strong>
+                <p>Logged in as:<span th:text="${user.username}"></span></p>
+            </section>
+            <!-- Management Cards -->
+            <section class="admin-grid">
+                <div class="hero-card">
+                    <h2>Manage Users</h2>
+                    <p>Edit, review, and remove user accounts.</p>
+                    <a class="action-button" th:href="@{/admin/users}">Open User Management</a>
+                </div>
+                <div class="hero-card">
+                    <h2>Manage Articles</h2>
+                    <p>Edit and manage wiki article content.</p>
+                    <a class="action-button" th:href="@{/articles}">Open Article Management</a>               
+                </div>
+            </section>
 
-<main class="main-content">
-
-    <div class="home-container">
-
-        <!-- Hero -->
-        <section class="hero-section">
-
-            <h1>Admin Dashboard</h1>
-
-            <p class="tagline">
-                Manage users, articles,
-                and administrative tools.
-            </p>
-
-        </section>
-
-        <!-- Status -->
-        <section class="status-card">
-
-            <strong>Administrator Access</strong>
-
-            <p>
-                Logged in as:
-                <span th:text="${user.username}">
-                </span>
-            </p>
-
-        </section>
-
-        <!-- Management Cards -->
-        <section class="admin-grid">
-
-            <div class="hero-card">
-
-                <h2>Manage Users</h2>
-
-                <p>
-                    Edit, review,
-                    and remove user accounts.
-                </p>
-
-                <a class="action-button"
-                   th:href="@{/admin/users}">
-                    Open User Management
-                </a>
-
-            </div>
-
-            <div class="hero-card">
-
-                <h2>Manage Articles</h2>
-
-                <p>
-                    Edit and manage
-                    wiki article content.
-                </p>
-
-                <a class="action-button"
-                   th:href="@{/articles}">
-                    Open Articles
-                </a>
-
-            </div>
-
-        </section>
-
-        <!-- Quick Preview -->
-        <section class="preview-card">
-
-            <h3>Recent Users</h3>
-
-            <div th:each="person : ${users}">
-
-                <p>
-                    <span
-                        th:text=
-                        "${person.username}">
-                    </span>
-                </p>
-
-            </div>
-
-        </section>
-
-    </div>
-
-</main>
+            <!-- Quick Preview -->
+            <section class="preview-card">
+                <h3>Recent Users</h3>
+                <div th:each="person : ${users}">
+                    <p><span th:text="${person.username}"></span></p>                
+                <div th:each="person : ${users}">
+                    <p><span th:text= "${person.username}"></span></p>             
+                </div>           
+            </section>
+        </div>
+    </main>
 </body>
 </html>

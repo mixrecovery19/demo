@@ -3,75 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${article.id == null} 
-    ? 'Create Article' 
-    : 'Edit Article'">Article Form</title>
-     <link rel="stylesheet"
-          href="/css/stylesSideBar.css">
-
-    <link rel="stylesheet"
-          href="/css/stylesArticleForm.css">
+    <title th:text="${article.id == null} ? 'Create Article' : 'Edit Article'">Article Form</title>
+     <link rel="stylesheet" href="/css/stylesSideBar.css">
+    <link rel="stylesheet" href="/css/stylesArticleForm.css">
 </head>
+    <body>
+        <div class="app-layout">
+            <!-- Sidebar -->
+            <div th:replace="~{sidebar :: sidebar}">                
+            </div>
+            <!-- Main Content -->
+            <main class="main-content">
+                <div class="container">
+                    <h1 th:text="${article.id == null} ? 'Create Article' : 'Edit Article'">Article Form</h1>   
 
-<body>
-
-<div class="app-layout">
-
-    <!-- Sidebar -->
-    <div th:replace="~{sidebar :: sidebar}"></div>
-
-    <!-- Main Content -->
-    <main class="main-content">
-
-        <div class="container">
- 
-    <h1 th:text="${article.id == null} 
-    ? 'Create Article' 
-    : 'Edit Article'">
-    </h1>
-
-    <!-- 🔹 User Status -->
-    <p th:if="${user == null}" class="logged-out">
-        Logged out
-    </p>
-
-    <p th:if="${user != null}" class="logged-in">
-        Logged in as: <span th:text="${user.username}"></span>
-    </p>
-
-    <!-- 🔹 Form -->
-    <form th:action="@{/articles/save}"
-      th:object="${article}"
-      method="post"
-      class="form-group">
-        <input type="hidden"
-            th:field="*{id}">
-      <input type="text"
-       th:field="*{title}"
-       placeholder="Title"
-       required>
-        <label for="category">Category</label>
-        <select id="category" th:field="*{category}">
-            <option value="">Select a category</option>
-            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
-        </select>
-       <textarea th:field="*{content}"
-          placeholder="Content"
-          rows="6"
-          required></textarea>
-
-        <button type="submit" class="btn-primary">Save Article</button>
-    </form>
-
-    <!-- 🔹 Navigation -->
-    <div class="button-group">
-        <a href="/articles" class="btn-secondary link-button">Back to Articles</a>   
-    </div>
-
+            <!-- 🔹 User Status -->
+            <p th:if="${user == null}" class="logged-out">Logged out</p>
+            <p th:if="${user != null}" class="logged-in">Logged in as: <span th:text="${user.username}"></span></p>
+            <!-- 🔹 Form -->
+            <form th:action="@{/articles/save}" th:object="${article}" method="post" class="form-group">
+                <input type="hidden" th:field="*{id}">
+                <input 
+                    type="text" 
+                    th:field="*{title}" 
+                    placeholder="Title"
+                    required>
+                <label for="category">Category</label>
+                <select id="category" th:field="*{category}">
+                    <option value="">Select a category</option>
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                </select>
+                <textarea th:field="*{content}"
+                placeholder="Content"
+                rows="6"
+                required></textarea>
+                <button type="submit" class="btn-primary">Save Article</button>
+            </form>
+            <!-- 🔹 Navigation -->
+            <div class="button-group">
+                <a href="/articles" class="btn-secondary link-button">Back to Articles</a>   
+            </div>
+        </div>
+    </main>
 </div>
-
-</main>
-</div>
-
 </body>
 </html>

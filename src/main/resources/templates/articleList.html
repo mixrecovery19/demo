@@ -1,207 +1,81 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width,
-                   initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles</title>
-
-    <link rel="stylesheet"
-          href="/css/stylesSideBar.css">
-
-    <link rel="stylesheet"
-          href="/css/stylesArticleList.css">
+    <link rel="stylesheet" href="/css/stylesSideBar.css">
+    <link rel="stylesheet" href="/css/stylesArticleList.css">
 </head>
-
 <body>
 
 <div class="app-layout">
-
     <!-- Sidebar -->
     <div th:replace="~{sidebar :: sidebar}"></div>
-
     <!-- Main Content -->
     <main class="main-content">
-
     <div class="home-container">
-
         <!-- Page Hero -->
         <section class="hero-section">
-
             <h1>Articles</h1>
-
-            <p class="tagline">
-                Explore published stories,
-                observations,
-                and examples of systems
-                quietly falling apart.
-            </p>
-
+            <p class="tagline">Explore published stories, observations, and examples of systems quietly falling apart.</p>
         </section>
-
         <!-- User Status -->
         <section class="status-card">
-
-            <div th:if="${user == null}"
-                 class="logged-out">
-
+            <div th:if="${user == null}" class="logged-out">
                 <strong>Guest Access</strong>
-
-                <p>
-                    You are browsing in read-only mode.
-                </p>
-
+                <p>You are browsing in read-only mode.</p>
             </div>
-
-            <div th:if="${user != null}"
-                 class="logged-in">
-
+            <div th:if="${user != null}" class="logged-in">
                 <strong>Logged In</strong>
-
-                <p>
-                    Welcome back,
-                    <span th:text="${user.username}">
-                    </span>
-                </p>
-
+                <p>Welcome back,<span th:text="${user.username}"></span></p>
             </div>
-
         </section>
 
         <!-- Actions -->
-        <section class="hero-card"
-                 th:if="${user != null}">
-
+        <section class="hero-card" th:if="${user != null}">
             <h2>Content Management</h2>
-
-            <p>
-                Create and manage articles.
-            </p>
-
+            <p>Create and manage articles.</p>
             <div class="button-group">
-
-                <a href="/articles/new"
-                   class="btn-primary link-button">
-
-                    Create Article
-
-                </a>
-
+                <a href="/articles/new" class="btn-primary link-button">Create Article</a>
             </div>
-
         </section>
 
         <!-- Article List -->
-        <div th:if="${#lists.isEmpty(articles)}"
-             class="preview-card">
-
+        <div th:if="${#lists.isEmpty(articles)}" class="preview-card">
             <h3>No Articles Yet</h3>
-
-            <p>
-                No content has been published.
-            </p>
-
+            <p>No content has been published.</p>
         </div>
-
         <!-- Article Cards -->
-        <section th:each="article : ${articles}"
-                 class="article-card">
-
+        <section th:each="article : ${articles}" class="article-card">
             <!-- Header -->
             <div class="article-header">
-
                 <div>
-
-                    <h2 th:text="${article.title}">
-                        Article Title
-                    </h2>
-
-                    <p class="article-author">
-
-                        By
-                        <strong th:text="${article.author != null
-                            ? article.author.username
-                            : 'Unknown'}">
-                        </strong>
-
+                    <h2 th:text="${article.title}">Article Title</h2>
+                    <p class="article-author">By
+                        <strong th:text="${article.author != null ? article.author.username : 'Unknown'}"></strong>                       
                     </p>
-
                 </div>
-
-                <span class="category-tag"
-                      th:text="${article.category != null
-                      ? article.category.name
-                      : 'Uncategorised'}">
-                </span>
-
+                <span class="category-tag" th:text="${article.category != null ? article.category.name : 'Uncategorised'}"></span>                
             </div>
-
             <!-- Content Preview -->
-            <p class="article-content"
-               th:text="${article.content}">
-            </p>
-
+            <p class="article-content" th:text="${article.content}"></p>          
             <!-- Metadata -->
             <div class="article-meta">
-
                 <p>
                     <strong>Name:</strong>
-
-                    <span th:if="${article.author != null}"
-                          th:text="${article.author.givenname + ' ' + article.author.familyname}">
-                    </span>
-
-                    <span th:if="${article.author == null}">
-                        Unknown
-                    </span>
+                    <span th:if="${article.author != null}" th:text="${article.author.givenname + ' ' + article.author.familyname}"></span>
+                    <span th:if="${article.author == null}">Unknown</span>
                 </p>
-
-                <!--<p>
-                    <strong>Country:</strong>
-
-                    <span th:if="${article.author != null
-                                   and article.author.country != null}"
-                          th:text="${article.author.country.name}">
-                    </span>
-
-                    <span th:if="${article.author == null
-                                   or article.author.country == null}">
-                        Unknown
-                    </span>
-                </p>-->
             </div>
           
-            <div class="admin-actions"
-                th:if="${user != null and
-                    (
-                    user.username == '1'
-                    or
-                    article.author.id == user.id
-                    )}">
-
-                <a th:href="@{/articles/edit/{id}(id=${article.id})}"
-                class="btn-edit">
-                    Edit
-                </a>
-
-                <a th:href="@{/articles/delete/{id}(id=${article.id})}"
-                class="btn-delete">
-                    Delete
-                </a>
-
+            <div class="admin-actions" th:if="${user != null and (user.username == '1' or article.author.id == user.id)}">   
+                <a th:href="@{/articles/edit/{id}(id=${article.id})}" class="btn-edit">Edit</a>                  
+                <a th:href="@{/articles/delete/{id}(id=${article.id})}" class="btn-delete">Delete</a>                    
             </div>
         </section>
-
     </div>
-
 </main>
-
 </div>
-
 </body>
 </html>
