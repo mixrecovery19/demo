@@ -1,3 +1,7 @@
+****YOU MAY NEED TO UPDATE THE DATABASE IN ORDER TO GET THE LOGIN WORKING****
+****WHICH CAN BE ACHIEVED BY REDO ADMIN USER PASSWORD HASH AND ENSURE THAT H2-Console****
+****UPDATES isAdmin = true*****
+
 Assessment 2
 Part A – Wiki Administrator Login
 Marks for Assessment 2:

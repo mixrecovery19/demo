@@ -23,10 +23,8 @@
             <!-- Admin Status -->
             <section class="status-card">
                 <strong>Administrator Access</strong>
-
                 <p>Logged in as <span th:text="${user.username}"></span></p>                  
             </section>
-
             <!-- User Table -->
             <section class="hero-card">
                 <h2>Registered Users</h2>
@@ -40,12 +38,10 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <tr th:each="person : ${users}">
                             <td th:text="${person.id}"></td>
                             <td th:text="${person.username}">Username</td>
-
                             <td th:text="${person.givenname}">Given Name</td>
                             <td th:text="${person.familyname}">Family Name</td>                           
 
