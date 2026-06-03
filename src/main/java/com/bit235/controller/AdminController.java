@@ -81,7 +81,7 @@ import org.springframework.web.bind.annotation.*;
                 }
 
         @GetMapping("/admin/users/delete/{id}")
-        public String deleteUser(@PathVariable Long id)
+        public String deleteUser(@PathVariable @NonNull Long id)
                 {
 
                 System.out.println("=================================");   
