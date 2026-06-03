@@ -24,6 +24,10 @@ import com.bit235.service.ArticleService;
  * -----------------
  * This class handles login-related requests. By access the necessary Service laeyers it can perform login flow and logic as well as, in this case
  * displaying the home page with dynamic content.
+ * Classes usually contain 3 things(typically): 
+ * 1. Fields for the data, 
+ * 2. Constuctors to create objects
+ * 3. Methods to perfom actions, simply, getters and setters.
  */
 @Controller
 public class LoginController {

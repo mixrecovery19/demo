@@ -23,11 +23,7 @@ public class Person {
     private LocalDate dob;
 
     @Column(columnDefinition = "TEXT")
-    private String biography;
-
-    /*@ManyToOne
-    @JoinColumn(name = "country_id")
-    private Country country;*/
+    private String biography;    
 
     public Person() {
     }

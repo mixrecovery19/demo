@@ -8,6 +8,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+//class to handle admin... controller "directs traffic".
         @Controller
         public class AdminController {
 
