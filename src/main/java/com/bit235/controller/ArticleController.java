@@ -37,59 +37,38 @@ import com.bit235.model.Person;
 import com.bit235.service.ArticleService;
 import com.bit235.service.CategoryService;
 import java.util.Objects;
-
-/*
- * @Controller tells Spring this class
- * handles browser requests (URLs).
- */
+//@Controller tells Spring this class handles browser requests (URLs).
 @Controller
 public class ArticleController {
-
     /*
-     * final fields are used for
-     * Dependency Injection.
-     *
-     * Spring automatically provides
-     * these Service objects through
-     * the constructor.
-     *
+     * final fields are used for Dependency Injection.     
+     * Spring automatically provides these Service objects through the constructor.     
      * This follows separation of concerns:
      * Controller → handles requests
      * Service → business logic
      */
     private final ArticleService articleService;
     private final CategoryService categoryService;
-
     /*
-     * Constructor Injection
-     * ------------------------
-     * Spring automatically injects
-     * the required services here.
-     *
-     * This is preferred over @Autowired
-     * because it is cleaner and safer.
+     * Constructor Injection     
+     * Spring automatically injects the required services here.     
+     * This is preferred over @Autowired because it is cleaner and safer.
      */
     public ArticleController(ArticleService articleService, CategoryService categoryService)
-    {
-        this.articleService = articleService;
-        this.categoryService = categoryService;
-    }
-
+        {
+            this.articleService = articleService;
+            this.categoryService = categoryService;
+        }
     /*
-     * PUBLIC ARTICLE LIST
-     * ------------------------
-     * Displays all articles.
-     *
-     * URL:
-     * /articles
-     *
-     * Model is used to send data
-     * to the Thymeleaf template.
+     * PUBLIC ARTICLE LIST     
+     * Displays all articles.     
+     * URL: /articles     
+     * Model is used to send data to the Thymeleaf template.
      */
     @GetMapping("/articles")
     public String showArticles(Model model, HttpSession session)
     {
-        //sessions object is being used to check if the user is logged in and to pass user information to view
+        // sessions object is being used to check if the user is logged in and to pass user information to view
         // this is common practise in many controllers.
         Person user = (Person) session.getAttribute("user");
 

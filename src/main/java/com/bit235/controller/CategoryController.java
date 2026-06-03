@@ -53,10 +53,10 @@ public class CategoryController {
      * of Category Service to the constructor which is locatedin the Servie layer
      */
     public CategoryController(CategoryService categoryService)
-    {
-        this.categoryService =
-                categoryService;
-    }
+        {
+            this.categoryService =
+                    categoryService;
+        }
 
     /*
      * Display all categories
@@ -79,9 +79,9 @@ public class CategoryController {
     @GetMapping
     public String listCategories(Model model)
         {
-                model.addAttribute("categories", categoryService.getAllCategories());        
+            model.addAttribute("categories", categoryService.getAllCategories());        
 
-                return "categories";
+            return "categories";
         }
 
     /*
@@ -105,19 +105,17 @@ public class CategoryController {
      */
     @GetMapping("/new")
     public String showCreateForm(Model model, HttpSession session)
-    {
-        Boolean isAdmin =
-                (Boolean) session.getAttribute("isAdmin");                
+        {
+            Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");              
 
-        // Basic access control
-        if (isAdmin == null || !isAdmin) {
-            return "redirect:/login";
+            // Basic access control
+            if (isAdmin == null || !isAdmin) {
+                return "redirect:/login";
+            }
+            model.addAttribute("category", new Category());        
+
+            return "categoryForm";
         }
-
-        model.addAttribute("category", new Category());        
-
-        return "categoryForm";
-    }
 
     /*
      * Save Category
@@ -137,14 +135,13 @@ public class CategoryController {
      */
     @PostMapping("/save")
     public String saveCategory(@ModelAttribute Category category) 
-    {
-        // Defensive check
-        if (category != null) {
-            categoryService.saveCategory(category);
-            
+        {
+            // Defensive check
+            if (category != null) {
+                categoryService.saveCategory(category);            
+            }
+            return "redirect:/categories";
         }
-        return "redirect:/categories";
-    }
 
     // delete category by id is not really set up in place
     // it allows for a category to be deleted throught the article managment yet there is
