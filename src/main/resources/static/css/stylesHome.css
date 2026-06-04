@@ -4,7 +4,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 /* 🔹 Page background */
 body {
     font-family: -apple-system,
@@ -49,7 +48,6 @@ body {
     padding: 40px 50px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-
     width: 100%;
     max-width: 500px;
     text-align: center;
@@ -77,17 +75,13 @@ h1 {
 /* 🔹 Button base */
 button {
     width: 100%;
-    padding: 12px;
-    
+    padding: 12px;    
     border: none;
-    border-radius: 8px;
-
+    border-radius: 30px;
     font-size: 15px;
     font-weight: 600;
-
     cursor: pointer;
     transition: all 0.2s ease;
-
     display: block;
 }
 
@@ -166,17 +160,11 @@ form:last-of-type {
 .status-card,
 .preview-card {
     background: rgba(255,255,255,0.95);
-
     border-radius: 16px;
-
     padding: 2rem;
-
     margin-bottom: 1.5rem;
-
     box-shadow:
-        0 10px 25px rgba(0,0,0,0.08);
-
-  
+        0 10px 25px rgba(0,0,0,0.08);  
 }
 
 /* 🔹 Card headings */
@@ -203,38 +191,23 @@ form:last-of-type {
     color: #e74c3c;
 }
 /* Homepage carousel container */
-
 .image-carousel-container {
-
     width: 100%;
     max-width: 850px;
-
     height: 520px;
-
     margin: 0 auto 2rem auto;
-
     overflow: hidden;
-
     border-radius: 16px;
-
     border: 1px solid #dcdcdc;
-
     background-color: #f4f4f4;
-
     box-shadow:
         0 4px 16px
         rgba(0, 0, 0, 0.15);
 }
-
-
 /* Carousel image */
-
 .carousel-image {
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
     display: block;
 }

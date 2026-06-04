@@ -2,129 +2,78 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories</title>
-
-    <link rel="stylesheet"
-          href="/css/stylesSideBar.css">
-    <link rel="stylesheet"
-          href="/css/stylesCategoryList.css">
+    <link rel="stylesheet" href="/css/stylesSideBar.css">
+    <link rel="stylesheet" href="/css/stylesCategoryList.css">
 </head>
-
 <body>
-<div class="app-layout">
-
-    <!-- Sidebar -->
-    <div th:replace="~{sidebar :: sidebar}"></div>
-
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <div th:replace="~{sidebar :: sidebar}">        
+        </div>
     <!-- Main Content -->
     <main class="main-content">
         <div class="home-container">
-
             <!-- Hero -->
             <section class="hero-section">
                 <h1>Categories</h1>
-
-                <p class="tagline">
-                    Browse and manage different categories for your content.
-                </p>
+                <p class="tagline">Browse and manage different categories for your content.</p>                
             </section>
-
             <!-- User Status -->
             <section class="status-card">
-
                 <div th:if="${user == null}"
                      class="logged-out">
                     <strong>Guest Access</strong>
-
-                    <p>
-                        You are browsing in read-only mode.
-                    </p>
+                    <p>You are browsing in read-only mode.</p>
                 </div>
 
                 <div th:if="${user != null}"
                      class="logged-in">
                     <strong>Logged In</strong>
-
-                    <p>
-                        Welcome back,
-                        <span th:text="${user.username}"></span>
-                    </p>
+                    <p>Welcome back,<span th:text="${user.username}"></span></p>
                 </div>
-
             </section>
 
             <!-- Actions -->
-            <section class="hero-card"
-                     th:if="${user != null}">
-
+            <section class="hero-card" th:if="${user != null}">
                 <h2>Content Management</h2>
-
                 <p>Create and manage categories.</p>
-
                 <div class="button-group">
                     <a href="/categories/new"
                        class="btn-primary link-button">
                         Create Category
                     </a>
                 </div>
-
             </section>
 
             <!-- Empty -->
-            <div th:if="${#lists.isEmpty(categories)}"
-                 class="preview-card">
-
+            <div th:if="${#lists.isEmpty(categories)}" class="preview-card">
                 <h3>No Categories Yet</h3>
-
-                <p>
-                    No categories have been created.
-                </p>
-
+                <p>No categories have been created.</p>              
             </div>
-
             <!-- Category Cards -->
-            <section th:each="category : ${categories}"
-                     class="category-card">
-
+            <section th:each="category : ${categories}" class="category-card">
                 <!-- Header -->
                 <div class="category-header">
-
                     <div>
-                        <h2 th:text="${category.name}">
-                            Category Name
-                        </h2>
-
-                        <p class="category-description"
-                           th:text="${category.description}">
-                            Category Description
-                        </p>
+                        <h2 th:text="${category.name}">Category Name</h2>
+                        <p class="category-description" th:text="${category.description}">Category Description</p>                        
                     </div>
-
-                    <span class="category-tag"
-                          th:text="${category.name}">
-                    </span>
-
+                    <span class="category-tag" th:text="${category.name}"></span>                   
                 </div>
-
                 <!-- Meta -->
                 <div class="category-meta">
-
                     <p>
                         <strong>Created By:</strong>
-
                         <span th:if="${category.author != null}"
                               th:text="${category.author.givenname + ' ' + category.author.familyname}">
                         </span>
-
                         <span th:if="${category.author == null}">
                             Unknown
                         </span>
                     </p>
-
                 </div>
-
                 <!-- Actions -->
                 <div class="admin-actions"
                      th:if="${user != null and
@@ -138,23 +87,18 @@
                         )
                      )}">
 
-                    <a th:href="@{/categories/edit/{id}(id=${category.id})}"
-                       class="btn-edit">
-                        Edit
-                    </a>
-
-                    <<a th:href="@{/categories/delete/{id}(id=${category.id})}"
-                    class="btn-delete"
-                    onclick="return confirm(
-                    'Are you sure you want to delete this category?'
-                    )">
+                    <a th:href="@{/categories/edit/{id}(id=${category.id})}" class="btn-edit">Edit</a>                       
+                    <a th:href="@{/categories/delete/{id}(id=${category.id})}"
+                        class="btn-delete"
+                        onclick="return confirm(
+                        'Are you sure you want to delete this category?'
+                        )">
                         Delete
                     </a>
                 </div>
             </section>
         </div>
     </main>
-
 </div>
 </body>
 </html>

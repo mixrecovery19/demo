@@ -123,18 +123,30 @@ public class CategoryController {
      * which Thymeleaf binds to the HTML form.
      */
     
-   @GetMapping("/new")
-    public String showCreateForm(
-            Model model
-    )
-    {
+        @GetMapping("/new")
+        public String showCreateForm(
+                Model model,
+                HttpSession session
+        )
+        {
+        Person user =
+                (Person) session
+                        .getAttribute(
+                                "user"
+                        );
+
+        model.addAttribute(
+                "user",
+                user
+        );
+
         model.addAttribute(
                 "category",
                 new Category()
         );
 
         return "categoryForm";
-    }
+        }
 
     /*
      * Save Category
@@ -216,6 +228,10 @@ public class CategoryController {
         model.addAttribute(
                 "category",
                 category
+        );
+        model.addAttribute(
+                "user",
+                user
         );
 
         return "categoryForm";

@@ -1,3 +1,7 @@
+// Client side Javascript validation for the article form.
+// this can also be done with server side validation as per previous examples in the Controllers
+// but this provides a better user experience by providing immediate feedback without the need for a page refresh.
+// which I did not realize that is why we were doing this for but makes perfect sense now.
 function validateArticleForm() {
 
     const title = document.getElementById("title").value.trim();

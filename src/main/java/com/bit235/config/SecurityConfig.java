@@ -1,5 +1,5 @@
 package com.bit235.config;
-//@Configuration is Spring’s built-in mechanism specifically for config/setup classes, 
+// @Configuration is Spring’s built-in mechanism specifically for config/setup classes, 
 // and while it could technically be used elsewhere, the correct architectural place is 
 // in dedicated configuration classes (usually inside a config package).
 import org.springframework.context.annotation.Bean;
@@ -37,7 +37,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * password security.*/ 
 @Configuration
 public class SecurityConfig {
-
     /*
      * @Bean
      * -----------------------------
@@ -53,7 +52,6 @@ public class SecurityConfig {
      */
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         /*BCryptPasswordEncoder - interface implementation, in effect BCrypt is a interface to handle hashing of any text, used for passwords.        
          * Creates a BCrypt password encoder.         
          * BCrypt is considered secure because:

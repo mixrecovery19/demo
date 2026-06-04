@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.bit235.model.Category;
 import com.bit235.repository.CategoryRepository;
 
+//clean example of a service class, handling the business logic for the Category entity. 
+// We could have put all of this logic in the controller. However this provide for cleaner, more manageable code.
 @Service
 public class CategoryService {
 

@@ -11,7 +11,5 @@ import com.bit235.model.Article;
 // In this case it was done for me by Spring Boot, I just needed to create the interface, then extend the repository(JpaRepository).
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     boolean existsByAuthorId(Long authorId);
-    List<Article> findByCategoryId(
-        Long categoryId
-);
+    List<Article> findByCategoryId(Long categoryId);
 }

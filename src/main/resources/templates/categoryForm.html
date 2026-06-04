@@ -17,7 +17,6 @@
     <main class="main-content">
         <div class="container">
             <h1>Create Category</h1>
-
             <form
                 th:action="@{/categories/save}"
                 th:object="${category}"
@@ -36,7 +35,6 @@
                 </textarea>
                 <button type="submit" class="btn-primary">Save Category</button>
             </form>
-
             <!-- Navigation -->
             <div class="button-group">
                 <a href="/categories" class="btn-secondary link-button">Back to Categories</a>

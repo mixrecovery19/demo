@@ -114,21 +114,15 @@ body {
 .link-button {
     display: block;
     width: 100%;
-
     padding: 12px;
     margin-top: 10px;
-
     text-align: center;
     text-decoration: none;
-
-    border-radius: 8px;
-
+    border-radius: 30px;
     font-size: 15px;
     font-weight: 600;
-
     background-color: #95a5a6;
     color: white;
-
     transition: all 0.2s ease;
 }
 
@@ -140,44 +134,35 @@ body {
 .btn-primary {
     background-color: #3498db;
     color: white;
+    border-radius: 30px;
 }
-
 .btn-primary:hover {
     background-color: #2980b9;
 }
-
 /* 🔹 Admin actions */
 .admin-actions {
     display: flex;
     gap: 12px;
-
     margin-top: 1.5rem;
 }
-
 /* 🔹 Edit / Delete buttons */
 .btn-edit,
 .btn-delete {
     text-decoration: none;
-
-    border-radius: 10px;
+    border-radius: 30px;
     padding: 12px 18px;
-
     color: white;
     font-weight: 600;
+    background: #e74c3c;
+    border-radius: 30px;
 }
-
 .btn-edit {
     background: #3498db;
+    border-radius: 30px;
 }
-
 .btn-edit:hover {
     background: #2980b9;
 }
-
-.btn-delete {
-    background: #e74c3c;
-}
-
 .btn-delete:hover {
     background: #c0392b;
 }

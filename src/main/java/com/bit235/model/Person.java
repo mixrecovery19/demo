@@ -30,96 +30,72 @@ public class Person {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
 
     private List<Article> articles;
-    // 🔹 ID
+   
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     // 🔹 Username
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username)
     {
         this.username = username;
     }
-
     // 🔹 Password
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password)
     {
         this.password = password;
     }
-
     // 🔹 Family Name
     public String getFamilyname() {
         return familyname;
     }
-
     public void setFamilyname(String familyname)
     {
         this.familyname = familyname;
     }
-
     // 🔹 Given Name
     public String getGivenname() {
         return givenname;
     }
-
     public void setGivenname(String givenname)
     {
         this.givenname = givenname;
     }
-
     // 🔹 Date of Birth
     public LocalDate getDob() {
         return dob;
     }
-
     public void setDob(LocalDate dob)
     {
         this.dob = dob;
     }
-
     // 🔹 Biography
     public String getBiography() {
         return biography;
     }
-
     public void setBiography(String biography)
     {
         this.biography = biography;
-    }
-    // 🔹 Country
-    /*public Country getCountry() {
-        return country;
-    }
-    public void setCountry(Country country)
-    {
-        this.country = country;
-    }*/
+    }    
     public List<Article> getArticles() {
     return articles;
     }
-
     public void setArticles(List<Article> articles)
     {
         this.articles = articles;
     }
-
     // establishes an admin role for the person entity allowing us to differentiate between users and admins in the application
     public Boolean getIsAdmin() {
         return isAdmin;
     }
-
     public Boolean isAdmin() {
     return isAdmin;
     }
@@ -128,7 +104,6 @@ public class Person {
     {
         this.isAdmin = isAdmin;
     }
-
     //separates the user from the admin role allowing me to create a user/admin type of flow to the project
     public Boolean isUser() {
         return !isAdmin;

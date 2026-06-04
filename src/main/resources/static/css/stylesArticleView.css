@@ -55,40 +55,31 @@ h1 {
 /* 🔹 Button base */
 button {
     width: 100%;
-    padding: 12px;
-    
+    padding: 12px;    
     border: none;
-    border-radius: 8px;
-
+    border-radius: 30px;
     font-size: 15px;
     font-weight: 600;
-
     cursor: pointer;
     transition: all 0.2s ease;
-
     display: block;
 }
-
 /* 🔹 Primary button (Articles) */
 .btn-primary {
     background-color: #3498db;
     color: white;
 }
-
 .btn-primary:hover {
     background-color: #2980b9;
 }
-
 /* 🔹 Secondary button (Login) */
 .btn-secondary {
     background-color: #95a5a6;
     color: white;
 }
-
 .btn-secondary:hover {
     background-color: #7f8c8d;
 }
-
 /* 🔹 Danger button (Logout) */
 .btn-danger {
     background-color: #e74c3c;
@@ -121,20 +112,15 @@ form:last-of-type {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
-
     text-align: center;
     text-decoration: none;
-
-    border-radius: 8px;
+    border-radius: 30px;
     font-size: 15px;
     font-weight: 600;
-
     background-color: #95a5a6;
     color: white;
-
     transition: all 0.2s ease;
 }
-
 .link-button:hover {
     background-color: #7f8c8d;
 }
@@ -143,45 +129,35 @@ form:last-of-type {
     width: 100%;
     max-width: 1000px;
 }
-
 /* Hero */
 .hero-section {
     margin-bottom: 2rem;
 }
-
 .hero-section h1 {
     font-size: 3rem;
     margin-bottom: 0.5rem;
 }
-
 .tagline {
     color: #64748b;
     line-height: 1.6;
 }
-
 /* Shared cards */
 .status-card,
 .hero-card,
 .preview-card,
 .article-card {
     background: rgba(255,255,255,0.96);
-
     border-radius: 18px;
-
     padding: 2rem;
-
     margin-bottom: 1.5rem;
-
     box-shadow:
         0 10px 30px rgba(0,0,0,0.08);
 }
-
 /* Article header */
 .article-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-
     margin-bottom: 1rem;
 }
 
@@ -192,11 +168,8 @@ form:last-of-type {
 /* Category tag */
 .category-tag {
     background: #e2e8f0;
-
     padding: 8px 14px;
-
     border-radius: 999px;
-
     font-size: 13px;
     font-weight: 600;
 }
@@ -225,16 +198,18 @@ form:last-of-type {
 .btn-edit,
 .btn-delete {
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 30px;
     padding: 12px 18px;
     color: white;
     font-weight: 600;
 }
 
 .btn-edit {
+    border-radius: 30px;
     background: #3498db;
 }
 
 .btn-delete {
+    border-radius: 30px;
     background: #e74c3c;
 }

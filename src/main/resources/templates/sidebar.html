@@ -13,9 +13,7 @@
     <div class="sidebar-header">
         <h4>A Very Broken System</h4>
             <p th:if="${user == null}">Guest Mode</p>            
-            <p th:if="${user != null}">Welcome,
-                <span th:text="${user.username}"></span>
-            </p>
+            <p th:if="${user != null}">Welcome,<span th:text="${user.username}"></span></p>            
     </div>
 
     <nav class="sidebar-nav">
@@ -35,13 +33,8 @@
         </div>
     </nav>
     <footer class="sidebar-footer">
-    <p>
-        Developed by Michael Kalaf
-    </p>
-
-    <p class="webmaster-label">
-        Web Master
-    </p>
+    <p>Developed by Michael Kalaf</p>
+    <p class="webmaster-label">Web Master</p>
 </footer>
 </div>
 

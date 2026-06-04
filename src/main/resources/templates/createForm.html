@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
-
     <link rel="stylesheet" href="/css/stylesSideBar.css">
     <link rel="stylesheet" href="/css/stylesUserAndLoginForms.css">
 </head>
@@ -12,11 +11,9 @@
 <div class="app-layout">
     <!-- Sidebar -->
     <div th:replace="~{sidebar :: sidebar}">
-    </div>
-
+</div>
     <!-- Main Content -->
     <main class="main-content">
-
         <div class="container">
             <h1>Create Account</h1>
             <form th:action="@{/create-user-account/save}"
@@ -47,29 +44,21 @@
                        th:field="*{familyname}"
                        placeholder="Family Name"
                        required>
-                <label for="dob">
-                    Date of Birth
-                </label>
+                <label for="dob">Date of Birth</label>
                 <input id="dob"
                        type="date"
                        th:field="*{dob}"
                        title="Date of Birth"
                        placeholder="YYYY-MM-DD"
                        required>
-                <label for="biography">
-                    Biography
-                </label>
+                <label for="biography">Biography</label>
                 <textarea id="biography"
                           th:field="*{biography}"
                           placeholder="Tell us about yourself"
                           rows="6">
                 </textarea>
-                <button type="submit"
-                        class="btn-primary">
-                    Create Account
-                </button>
+                <button type="submit" class="btn-primary">Create Account</button>
             </form>
-
             <div class="button-group">
                 <a th:href="@{/login}"
                    class="btn-secondary link-button">

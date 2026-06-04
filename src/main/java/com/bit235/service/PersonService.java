@@ -90,22 +90,23 @@ public class PersonService {
                 System.out.println("=============================");
                 
                 }
-
-                public List<Person> findAll() {
+// needed to add this to handle the update of user for the delete, edit, user functionality in the admin dashboard.
+        public List<Person> findAll() {
                 return personRepository.findAll();
                 }
-
-                public Person findById(@NonNull Long id) {
+// this is a method to find a user by ID, used in the edit user form in the admin dashboard, and also in the delete user functionality.
+        public Person findById(@NonNull Long id) {
                 return personRepository.findById(id)
                         .orElse(null);
                 }
-
-               public void deleteById(@NonNull Long id)
+// this is a method to delete a user by ID, used in the delete user functionality in the admin dashboard. 
+// It also includes some print statements for demonstration and debugging purposes.
+        public void deleteById(@NonNull Long id)
                 {
-
+// left debug for demonstration.
         System.out.println("========== SERVICE DELETE ==========");  
         System.out.println("LOOKING FOR USER: " + id);    
-
+// the important part that need to be introduced to handle the cascade of deleting users that still had articles attached to them.
         Person person = personRepository
                         .findById(id)
                         .orElse(null);
@@ -116,12 +117,12 @@ public class PersonService {
 
                 return;
         }
-
+// same with these debug steps so I could get a visual representation of what was going on with the user and articles deletion.
     System.out.println("FOUND USER: " + person.getUsername());    
-    System.out.println("ARTICLE COUNT: " + (person.getArticles() != null ? person.getArticles().size() : 0));           
-
+    System.out.println("ARTICLE COUNT: " + (person.getArticles() != null ? person.getArticles().size() : 0));   
+    // apply a try catch to handle any exceptions gracefully.        
+// this was introduced because I could not delete a user that still had articles attached to them
                 try {
-
                         personRepository.delete(person);             
                         System.out.println("DELETE SUCCESSFUL");
 
@@ -131,7 +132,7 @@ public class PersonService {
                 }
         }
 
-                public void saveExistingUser(Person updatedPerson){
+        public void saveExistingUser(Person updatedPerson){
                 Long id = updatedPerson.getId();
 
                         if (id == null) {
@@ -143,7 +144,6 @@ public class PersonService {
                                 .orElse(null);
 
                 if (existingPerson != null) {
-
                         // prevent password being lost
                         if (
                         updatedPerson.getPassword()== null || updatedPerson .getPassword() .isBlank()) {
@@ -154,4 +154,4 @@ public class PersonService {
                
         }
         
-        }
+}

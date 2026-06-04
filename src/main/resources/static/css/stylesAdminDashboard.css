@@ -11,11 +11,9 @@
     display: inline-block;
     margin-top: 1rem;
     padding: 0.9rem 1rem;
-
     background: #1e293b;
     color: white;
-
-    border-radius: 12px;
+    border-radius: 30px;
     text-decoration: none;
 }
 

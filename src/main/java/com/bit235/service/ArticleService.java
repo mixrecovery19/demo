@@ -53,14 +53,14 @@ public class ArticleService {
 // Thymeleaf to render a random article and display it on the home page as a neat little "Feature Article".
         Random random = new Random();
 
-        return articles.get(
-                random.nextInt(articles.size())                
-        );
+        return articles.get(random.nextInt(articles.size()));              
+        
     }
-    public List<Article> getArticlesByCategory(
-        Long categoryId
-) {
-    return articleRepository
-            .findByCategoryId(categoryId);
-}
+    // method to allow for the retieval of article by category. Once we had "piped" the category information through the Article this 
+    // was a simple matter of using the "magic" findByCategoryId method in the ArticleRepository to allow for this functionality.
+    public List<Article> getArticlesByCategory(Long categoryId)
+    {
+        return articleRepository
+                .findByCategoryId(categoryId);
+    }
 }

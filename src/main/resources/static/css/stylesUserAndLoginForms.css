@@ -4,22 +4,18 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 /* 🔹 Page background */
 body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     min-height: 100vh;
 }
 .main-content {
     flex: 1;
-
     display: flex;
     justify-content: center;
     align-items: flex-start;
-
     padding: 3rem;
     padding-top: 60px;
 }
@@ -33,96 +29,80 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
-
 /* 🔹 Logged IN background */
 .logged-in-bg {
     background: 
         linear-gradient(rgba(244, 248, 251, 0.85), rgba(244, 248, 251, 0.85)),
         url("/images/awesome-corruption-cartoon.png");
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-
 /* 🔹 Main container (card look) */
 .container {
     background: white;
     padding: 40px 50px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-
     width: 100%;
     max-width: 500px;
     text-align: center;
 }
-
 /* 🔹 Heading */
 h1 {
     margin-bottom: 20px;
     font-size: 28px;
 }
-
 /* 🔹 Status text */
 .logged-in {
     color: #2ecc71;
     font-weight: 600;
     margin-bottom: 15px;
 }
-
 .logged-out {
     color: #e74c3c;
     font-weight: 600;
     margin-bottom: 15px;
 }
-
 /* 🔹 Button base */
 button {
     width: 100%;
-    padding: 12px;
-    
+    padding: 12px;    
     border: none;
-    border-radius: 8px;
-
+    border-radius: 30px;
     font-size: 15px;
     font-weight: 600;
-
     cursor: pointer;
     transition: all 0.2s ease;
-
     display: block;
 }
-
 /* 🔹 Primary button (Articles) */
 .btn-primary {
     background-color: #3498db;
     color: white;
+    border-radius: 30px;
 }
-
 .btn-primary:hover {
     background-color: #2980b9;
 }
-
 /* 🔹 Secondary button (Login) */
 .btn-secondary {
     background-color: #95a5a6;
     color: white;
+    border-radius: 30px;
 }
-
 .btn-secondary:hover {
     background-color: #7f8c8d;
 }
-
 /* 🔹 Danger button (Logout) */
 .btn-danger {
     background-color: #e74c3c;
     color: white;
+    border-radius: 30px;
 }
-
 .btn-danger:hover {
     background-color: #c0392b;
 }
-
 /* 🔹 Small spacing helper */
 .spacer {
     margin-top: 20px;
@@ -131,7 +111,6 @@ button {
 form {
     margin-bottom: 12px;
 }
-
 /* 🔹 Remove margin from last form */
 form:last-of-type {
     margin-bottom: 0;
@@ -146,29 +125,23 @@ form:last-of-type {
     gap: 15px;
     margin-top: 20px;
 }
-
 /* 🔹 Inputs */
 input[type="text"],
 input[type="password"] {
     width: 100%;
     padding: 12px;
-
     border: 1px solid #dcdfe3;
-    border-radius: 8px;
-
+    border-radius: 12px;
     font-size: 14px;
     font-family: inherit;
-
     outline: none;
     transition: border 0.2s ease, box-shadow 0.2s ease;
 }
-
 /* 🔹 Focus effect */
 input:focus {
     border-color: #3498db;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
-
 /* 🔹 Error message */
 .error-message {
     color: #e74c3c;
@@ -181,20 +154,15 @@ input:focus {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
-
     text-align: center;
     text-decoration: none;
-
-    border-radius: 8px;
+    border-radius: 30px;
     font-size: 15px;
     font-weight: 600;
-
     background-color: #95a5a6;
     color: white;
-
     transition: all 0.2s ease;
 }
-
 .link-button:hover {
     background-color: #7f8c8d;
 }

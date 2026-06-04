@@ -15,7 +15,7 @@
     background: #1e293b;
     color: white;
 
-    border-radius: 12px;
+    border-radius: 30px;
     text-decoration: none;
 }
 
@@ -40,50 +40,43 @@
     text-align: left;
     border-bottom: 1px solid #e2e8f0;
 }
-
 .users-table th {
     background: #f8fafc;
     color: #334155;
     font-weight: 600;
 }
-
 .users-table tr:hover {
     background: #f8fafc;
 }
-
 .actions {
     display: flex;
     gap: 0.75rem;
 }
-
 /* Edit button */
 .edit-btn {
     background: #1e293b;
     color: white;
     padding: 0.55rem 0.9rem;
-    border-radius: 10px;
+    border-radius: 30px;
     text-decoration: none;
     font-size: 0.9rem;
 }
-
 .edit-btn:hover {
     background: #334155;
 }
-
 /* Delete button */
 .delete-btn {
     background: #dc2626;
     color: white;
     padding: 0.55rem 0.9rem;
-    border-radius: 10px;
+    border-radius: 30px;
     text-decoration: none;
     font-size: 0.9rem;
+    border-radius: 30px;
 }
-
 .delete-btn:hover {
     background: #b91c1c;
 }
-
 /* 🔹 Page background */
 body {
     font-family: -apple-system,
@@ -105,7 +98,6 @@ body {
     background: 
         linear-gradient(rgba(244, 248, 251, 0.9), rgba(244, 248, 251, 0.9)),
         url("/images/cartoon-me-banging-head.png");
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -126,9 +118,8 @@ body {
 .container {
     background: white;
     padding: 40px 50px;
-    border-radius: 12px;
+    border-radius: 30px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-
     width: 100%;
     max-width: 500px;
     text-align: center;
@@ -139,34 +130,27 @@ h1 {
     margin-bottom: 20px;
     font-size: 28px;
 }
-
 /* 🔹 Status text */
 .logged-in {
     color: #2ecc71;
     font-weight: 600;
     margin-bottom: 15px;
 }
-
 .logged-out {
     color: #e74c3c;
     font-weight: 600;
     margin-bottom: 15px;
 }
-
 /* 🔹 Button base */
 button {
     width: 100%;
-    padding: 12px;
-    
+    padding: 12px;    
     border: none;
-    border-radius: 8px;
-
+    border-radius: 30px;
     font-size: 15px;
     font-weight: 600;
-
     cursor: pointer;
     transition: all 0.2s ease;
-
     display: block;
 }
 
