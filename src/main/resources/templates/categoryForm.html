@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Category</title>
+    <link rel="stylesheet" href="/css/stylesSideBar.css">
+    <link rel="stylesheet" href="/css/stylesUserAndLoginForms.css">
+</head>
+<body>
+<div class="app-layout">
+    <!-- Sidebar -->
+    <div th:replace="~{sidebar :: sidebar}">
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1>Create Category</h1>
+
+            <form
+                th:action="@{/categories/save}"
+                th:object="${category}"
+                method="post"
+                class="form-group">
+                <input type="hidden" th:field="*{id}">
+                <input
+                    type="text"
+                    th:field="*{name}"
+                    placeholder="Category Name"
+                    required>
+                <textarea
+                        th:field="*{description}"
+                        placeholder="Description"
+                        required>
+                </textarea>
+                <button type="submit" class="btn-primary">Save Category</button>
+            </form>
+
+            <!-- Navigation -->
+            <div class="button-group">
+                <a href="/categories" class="btn-secondary link-button">Back to Categories</a>
+            </div>
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

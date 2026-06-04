@@ -8,6 +8,7 @@ import org.springframework.lang.NonNull;
 
 // Project imports
 import com.bit235.model.Category;
+import com.bit235.model.Person;
 import com.bit235.service.CategoryService;
 
 import jakarta.servlet.http.HttpSession;
@@ -77,12 +78,30 @@ public class CategoryController {
      * inside the categories.html page.
      */
     @GetMapping
-    public String listCategories(Model model)
-        {
-            model.addAttribute("categories", categoryService.getAllCategories());        
+    public String listCategories(
+            Model model,
+            HttpSession session
+    )
+    {
+        Person user =
+                (Person) session
+                        .getAttribute(
+                                "user"
+                        );
 
-            return "categories";
-        }
+        model.addAttribute(
+                "user",
+                user
+        );
+
+        model.addAttribute(
+                "categories",
+                categoryService
+                        .getAllCategories()
+        );
+
+        return "categoryList";
+    }
 
     /*
      * Display Create Category Form
@@ -103,19 +122,19 @@ public class CategoryController {
      * new Category() creates an object instance
      * which Thymeleaf binds to the HTML form.
      */
-    @GetMapping("/new")
-    public String showCreateForm(Model model, HttpSession session)
-        {
-            Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");              
+    
+   @GetMapping("/new")
+    public String showCreateForm(
+            Model model
+    )
+    {
+        model.addAttribute(
+                "category",
+                new Category()
+        );
 
-            // Basic access control
-            if (isAdmin == null || !isAdmin) {
-                return "redirect:/login";
-            }
-            model.addAttribute("category", new Category());        
-
-            return "categoryForm";
-        }
+        return "categoryForm";
+    }
 
     /*
      * Save Category
@@ -133,15 +152,74 @@ public class CategoryController {
      * redirect:/categories prevents duplicate form
      * submissions when the browser refreshes.
      */
-    @PostMapping("/save")
-    public String saveCategory(@ModelAttribute Category category) 
-        {
-            // Defensive check
-            if (category != null) {
-                categoryService.saveCategory(category);            
-            }
+  @PostMapping("/save")
+    public String saveCategory(
+            @ModelAttribute Category category,
+            HttpSession session
+    ) {
+
+        Person user =
+                (Person) session
+                        .getAttribute(
+                                "user"
+                        );
+
+        if (
+                category != null
+                && user != null
+        ) {
+
+            category.setAuthor(
+                    user
+            );
+
+            categoryService
+                    .saveCategory(category);
+        }
+
+        return "redirect:/categories";
+    }
+    @GetMapping("/edit/{id}")
+    public String editCategory(
+            @PathVariable Long id,
+            Model model,
+            HttpSession session
+    ) {
+
+        Person user =
+                (Person) session
+                        .getAttribute("user");
+
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        Category category =
+                categoryService
+                        .getCategoryById(id);
+
+        boolean isAdmin =
+                Boolean.TRUE.equals(
+                        user.getIsAdmin()
+                );
+
+        boolean isOwner =
+                category.getAuthor() != null
+                && category.getAuthor()
+                        .getId()
+                        .equals(user.getId());
+
+        if (!isAdmin && !isOwner) {
             return "redirect:/categories";
         }
+
+        model.addAttribute(
+                "category",
+                category
+        );
+
+        return "categoryForm";
+    }
 
     // delete category by id is not really set up in place
     // it allows for a category to be deleted throught the article managment yet there is
@@ -150,17 +228,41 @@ public class CategoryController {
     // end way that a admin can delete or edit a category.
     // we still have the method in place and we can also see the use of both @PathVariable, @NotNull and also the redirect 
     // flow which prevents duplicate form submissions and also allows for a better user experience as well as security reasons.
-    @GetMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable @NonNull Long id, HttpSession session)
-    {
+   @GetMapping("/delete/{id}")
+    public String deleteCategory(
+            @PathVariable @NonNull Long id,
+            HttpSession session
+    ) {
 
-        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");               
+        Person user =
+                (Person) session
+                        .getAttribute("user");
 
-        // Restrict access to Admin users only
-        if (isAdmin == null || !isAdmin) {
+        if (user == null) {
             return "redirect:/login";
         }
-        categoryService.deleteCategory(id);
+
+        Category category =
+                categoryService
+                        .getCategoryById(id);
+
+        boolean isAdmin =
+                Boolean.TRUE.equals(
+                        user.getIsAdmin()
+                );
+
+        boolean isOwner =
+                category.getAuthor() != null
+                && category.getAuthor()
+                        .getId()
+                        .equals(user.getId());
+
+        if (!isAdmin && !isOwner) {
+            return "redirect:/categories";
+        }
+
+        categoryService
+                .deleteCategory(id);
 
         return "redirect:/categories";
     }

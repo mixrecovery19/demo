@@ -81,3 +81,12 @@ body {
     font-size: 0.85rem;
     letter-spacing: 1px;
 }
+ .sidebar-logo img {
+    width: 140px;
+    height: auto;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,0.2);
+}
