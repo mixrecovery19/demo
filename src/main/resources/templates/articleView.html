@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${article.title}">
+        Article
+    </title>
+
+    <link rel="stylesheet"
+          href="/css/stylesSideBar.css">
+
+    <link rel="stylesheet"
+          href="/css/stylesArticleView.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- Sidebar -->
+    <div th:replace="~{sidebar :: sidebar}">
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="home-container">
+
+            <section class="article-card">
+
+                <!-- Title -->
+                <h1 th:text="${article.title}">
+                    Article Title
+                </h1>
+
+                <!-- Article Header -->
+                <div class="article-header">
+
+                    <div>
+                        <p class="article-author">
+                            By
+                            <strong th:text="${article.author.username}">
+                                Author
+                            </strong>
+                        </p>
+                    </div>
+
+                    <span class="category-tag"
+      th:if="${article.category != null}"
+      th:text="${article.category.name}">
+    Category
+</span>
+
+<span class="category-tag"
+      th:if="${article.category == null}">
+    Uncategorized
+</span>
+
+                </div>
+
+                <!-- Divider -->
+                <hr>
+
+                <!-- Article Content -->
+                <div class="article-content">
+
+                    <p th:text="${article.content}">
+                        Article content here...
+                    </p>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="article-meta">
+
+                    <span th:text="${article.idDisplay}">
+                        #1
+                    </span>
+
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="admin-actions"
+                    th:if="${user != null and
+                    (user.isAdmin or
+                    user.id == article.author.id)}">
+
+                    <a class="btn-edit"
+                    th:href="@{/articles/edit/{id}(id=${article.id})}">
+                        Edit Article
+                    </a>
+
+                    <a class="btn-delete"
+                    th:href="@{/articles/delete/{id}(id=${article.id})}">
+                        Delete Article
+                    </a>
+
+                </div>
+
+                <!-- Back Button -->
+                <div class="button-group">
+
+                    <a class="link-button"
+                    th:href="@{/articles}">
+                        ← Back to Articles
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

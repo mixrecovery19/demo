@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.*;
         }
 
         private boolean isAdmin(HttpSession session) {
-                Person user = (Person) session.getAttribute("user");
-
-                return user != null && "1".equals(user.getUsername());
-        }
+                Person user =
+                        (Person) session
+                                .getAttribute("user");
+                return user != null
+                        && Boolean.TRUE.equals(user.getIsAdmin());                        
+                }
 
         @GetMapping("/admin")
         public String adminDashboard(Model model, HttpSession session)

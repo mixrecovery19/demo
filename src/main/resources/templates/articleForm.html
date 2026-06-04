@@ -21,12 +21,13 @@
             <p th:if="${user == null}" class="logged-out">Logged out</p>
             <p th:if="${user != null}" class="logged-in">Logged in as: <span th:text="${user.username}"></span></p>
             <!-- 🔹 Form -->
-            <form th:action="@{/articles/save}" th:object="${article}" method="post" class="form-group">
+            <form th:action="@{/articles/save}" th:object="${article}" method="post" onsubmit="return validateArticleForm();" class="form-group">
                 <input type="hidden" th:field="*{id}">
                 <input 
                     type="text" 
                     th:field="*{title}" 
                     placeholder="Title"
+                    id="title"
                     required>
                 <label for="category">Category</label>
                 <select id="category" th:field="*{category}">
@@ -36,6 +37,7 @@
                 <textarea th:field="*{content}"
                 placeholder="Content"
                 rows="6"
+                id="content"
                 required></textarea>
                 <button type="submit" class="btn-primary">Save Article</button>
             </form>
@@ -46,5 +48,6 @@
         </div>
     </main>
 </div>
+<script src="/js/validateArticleForm.js"></script>
 </body>
 </html>

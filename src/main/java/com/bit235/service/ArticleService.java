@@ -57,4 +57,10 @@ public class ArticleService {
                 random.nextInt(articles.size())                
         );
     }
+    public List<Article> getArticlesByCategory(
+        Long categoryId
+) {
+    return articleRepository
+            .findByCategoryId(categoryId);
+}
 }

@@ -91,7 +91,8 @@ public class ArticleController {
          * ${articles}
          */
         model.addAttribute("user", user);       
-        model.addAttribute("articles", articleService.getAllArticles());       
+        model.addAttribute("articles", articleService.getAllArticles());  
+        model.addAttribute("isFiltered", false);     
         /*
          * Returns articleList.html
          */
@@ -254,5 +255,63 @@ public class ArticleController {
         }
 
         return "redirect:/articles";
+    }
+   
+    @GetMapping("/articles/{id}")
+    public String viewArticle(
+            @PathVariable Long id,
+            Model model,
+            HttpSession session
+    ) {
+        Person user =
+                (Person) session
+                        .getAttribute("user");
+
+        Article article =
+                articleService
+                        .getArticleById(id);
+
+        if (article == null) {
+            return "redirect:/articles";
+        }
+
+        model.addAttribute(
+                "user",
+                user
+        );
+
+        model.addAttribute(
+                "article",
+                article
+        );
+
+        return "articleView";
+    }
+    @GetMapping("/articles/category/{id}")
+    public String articlesByCategory(
+            @PathVariable Long id,
+            Model model,
+            HttpSession session
+    ) {
+        Person user =
+                (Person) session
+                        .getAttribute("user");
+
+        model.addAttribute(
+                "user",
+                user
+        );
+
+        model.addAttribute(
+                "articles",
+                articleService
+                        .getArticlesByCategory(id)
+        );
+        model.addAttribute(
+        "isFiltered",
+        true
+);
+
+        return "articleList";
     }
 }

@@ -214,6 +214,7 @@ form:last-of-type {
     padding-top: 1rem;
     color: #475569;
 }
+
 /* Admin buttons */
 .admin-actions {
     display: flex;
@@ -221,8 +222,6 @@ form:last-of-type {
     margin-top: 1.5rem;
 }
 
-/* Shared button style */
-.btn-view,
 .btn-edit,
 .btn-delete {
     text-decoration: none;
@@ -230,45 +229,12 @@ form:last-of-type {
     padding: 12px 18px;
     color: white;
     font-weight: 600;
-
-    transition: all 0.2s ease;
 }
 
-/* View */
-.btn-view {
-    background: #2ecc71;
-}
-
-/* Edit */
 .btn-edit {
     background: #3498db;
 }
 
-/* Delete */
 .btn-delete {
     background: #e74c3c;
-}
-
-/* Hover effects */
-.btn-view:hover {
-    background: #27ae60;
-}
-
-.btn-edit:hover {
-    background: #2980b9;
-}
-
-.btn-delete:hover {
-    background: #c0392b;
-}
-/* Show All under category */
-.category-reset {
-    margin-top: 8px;
-    text-align: right;
-}
-
-.category-reset .category-tag {
-    display: inline-block;
-    text-decoration: none;
-    color: inherit;
 }

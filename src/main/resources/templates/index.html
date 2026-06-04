@@ -43,19 +43,26 @@
 
         <!-- Future Feature Placeholder -->
         <section class="preview-card">
-            <h3>Featured Article</h3>
-            <div th:if="${featuredArticle != null}">
-                <h4 th:text="${featuredArticle.title}"></h4>
-                <p th:text="${#strings.abbreviate(featuredArticle.content, 180)}"></p>                      
-            </div>             
-            <div th:if="${featuredArticle == null}">       
-                <p>No articles available.</p>
-            </div>
-        </section>
+    <h3>Featured Article</h3>
+
+    <div th:if="${featuredArticle != null}">
+        <h4 th:text="${featuredArticle.title}"></h4>
+
+        <p th:text="${#strings.abbreviate(featuredArticle.content, 140)}"></p>
+
+        <a th:href="@{/articles/{id}(id=${featuredArticle.id})}">
+            Read more
+        </a>
+    </div>
+
+    <div th:if="${featuredArticle == null}">
+        <p>No articles available.</p>
+    </div>
+</section>
     </div>
 </main>
 </div>
-// added some javascript for an example of how we can include JS in Spring projects.
+
 <script th:inline="javascript">
 //cleverly creates an empty array which it then populates from the model attribute.
 // even more cleverly, it looks as though the array is entirely empty and that we have commented out
