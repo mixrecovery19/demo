@@ -3,7 +3,6 @@ package com.bit235.model;
 import java.time.LocalDate;
 import jakarta.persistence.*;
 import java.util.List;
-
 @Entity// JPA annotation to mark this class as a database entity
 public class Person {
 // model class for Person. Gets mildly complex in the sense that we needed to differentiate between users and admins
@@ -97,7 +96,7 @@ public class Person {
         return isAdmin;
     }
     public Boolean isAdmin() {
-    return isAdmin;
+        return isAdmin;
     }
     // The setter for isAdmin allows us to assign admin privileges to a user
     public void setAdmin(Boolean isAdmin)

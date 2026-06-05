@@ -11,7 +11,7 @@ import com.bit235.repository.PersonRepository;
 @Service
 public class PersonService {
 // Service class for Person. Handles business logic.
-// Introduc the passwordEncoder to hash passwords and the personRepository to interact with the database.
+// Introduce the passwordEncoder to hash passwords and the personRepository to interact with the database.
     private final PersonRepository personRepository;
         private final PasswordEncoder passwordEncoder;
 // now we use it inside the constructor. to "set the tone" of the PersonService class.
@@ -19,7 +19,6 @@ public class PersonService {
                 this.personRepository = personRepository;
                 this.passwordEncoder = passwordEncoder;
         }
-
         // Login method. Very straifht forward. username, password, except we introduce the passwordEncoder
         // and BCrypt hashing for security reasons.
         public Person login(String username, String password) {

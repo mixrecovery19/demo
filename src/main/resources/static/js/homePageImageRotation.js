@@ -7,20 +7,14 @@ var slideIndex = 0;
 function showSlides() {
     const image = document.getElementById( "carouselImage");
 
-    image.src =
-        myImages[slideIndex];// cleveerly this is made in anticipation for the image array that gets loaded in the controller stage
+    image.src = myImages[slideIndex];// cleverly this is made in anticipation for the image array that gets loaded in the controller stage
 
-    slideIndex++;// increment slider for the index of the image array
+        slideIndex++;// increment slider for the index of the image array
 
-    if (
-        slideIndex >=
-        myImages.length
-        ) {
+    if (slideIndex >= myImages.length)
+        {
             slideIndex = 0;
         }
-    setTimeout(
-        showSlides,
-        5000
-    );   
+    setTimeout(showSlides, 5000);       
 }
  showSlides();// calling the function to start the carousel
