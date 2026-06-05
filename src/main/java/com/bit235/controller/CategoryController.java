@@ -12,6 +12,9 @@ import com.bit235.model.Person;
 import com.bit235.service.CategoryService;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 /*
  * CategoryController
@@ -77,6 +80,13 @@ public class CategoryController {
      * Model stores data temporarily so it can be displayed
      * inside the categories.html page.
      */
+    //Intentionally left this with the spacing to display how else Java code can be written.
+    // wheter I am right or not I do not know but I personally prefer
+    // e.g. listCategories(Model model, HTTPSession session) etc. same for model.Attributes("user")
+    public String getMethodName(@RequestParam String param) {
+        return new String();
+    }
+    
     @GetMapping
     public String listCategories(
             Model model,
@@ -102,27 +112,7 @@ public class CategoryController {
 
         return "categoryList";
     }
-
-    /*
-     * Display Create Category Form
-     *
-     * URL:
-     * /categories/new
-     *
-     * Session Handling:
-     * Checks whether the logged-in user is an Admin.
-     *
-     * If not admin:
-     * redirect user to login page.
-     *
-     * If admin:
-     * provide an empty Category object for the form.
-     *
-     * OOP:
-     * new Category() creates an object instance
-     * which Thymeleaf binds to the HTML form.
-     */
-    
+       
         @GetMapping("/new")
         public String showCreateForm(
                 Model model,
@@ -237,13 +227,8 @@ public class CategoryController {
         return "categoryForm";
     }
 
-    // delete category by id is not really set up in place
-    // it allows for a category to be deleted throught the article managment yet there is
-    // no category management page, which is something we could easily add with scale
-    // this project only allows the admin to delete users, articles, categories are fixed and there is intentionally no front
-    // end way that a admin can delete or edit a category.
-    // we still have the method in place and we can also see the use of both @PathVariable, @NotNull and also the redirect 
-    // flow which prevents duplicate form submissions and also allows for a better user experience as well as security reasons.
+   // amended this method's comments as intitially I had it set up so that there was no way to edit the Category.
+   // that changed and this Delete was introduced and piped accordingly.
    @GetMapping("/delete/{id}")
     public String deleteCategory(
             @PathVariable @NonNull Long id,

@@ -64,12 +64,12 @@ public class LoginController {
 
                 model.addAttribute("images", images);                
         
-        //introduces the Feature Article to the home page. Created in ArticleService.
+        // introduces the Feature Article to the home page. Created in ArticleService.
         // a great visual example of how we create a method in the Service layer, then call it through the Controller layer
         // to pass on as required to eventually be displayed through Thymeleaf in the View layer. 
         Article featuredArticle =
-                articleService
-                        .getRandomArticle();
+                        articleService
+                                .getRandomArticle();
                         model.addAttribute("featuredArticle", featuredArticle);        
 
                 return "index";
@@ -87,14 +87,9 @@ public class LoginController {
         @PostMapping("/login")
         public String handleLogin(Person formUser, Model model, HttpSession session)
         {
-        Person loggedInUser =
-                personService.login(
-                        formUser.getUsername(),
-                        formUser.getPassword()
-                );
+        Person loggedInUser = personService.login(formUser.getUsername(), formUser.getPassword());                
 
         if (loggedInUser != null) {
-
             session.setAttribute("user", loggedInUser);           
             session.setAttribute("isAdmin", loggedInUser.getIsAdmin());           
 

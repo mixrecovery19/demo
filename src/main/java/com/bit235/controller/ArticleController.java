@@ -67,7 +67,7 @@ public class ArticleController {
     {
         Person user = (Person) session.getAttribute("user");
         /* Security check. If not logged in, redirect to login page.
-         * redirect: prevents users accessing restricted pages directly. */         
+         * redirect: prevents users accessing restricted pages directly and duplicated form submissions */         
         if (user == null) {
             return "redirect:/login";
         }
@@ -80,7 +80,7 @@ public class ArticleController {
 
         return "articleForm";
     }
-// controller method to handle article form sumission. It also ensures that the user is logged in and that the articles authoer is assigned correctly.
+// controller method to handle article form submission. It also ensures that the user is logged in and that the articles authoer is assigned correctly.
     @PostMapping("/articles/save")
     public String saveArticle(Article article, HttpSession session)
     {
@@ -161,7 +161,8 @@ public class ArticleController {
                 if (article == null) {
                 return "redirect:/articles";
                 }
-
+// this is a permission check. This is we create a situation that makes for some personalized user experience in the sense
+// that thorough this boolean method we are saying canDelete if user = admin OR if the user's ID matches the article author's ID.
         boolean canDelete =
                 user.getIsAdmin()
                 ||
