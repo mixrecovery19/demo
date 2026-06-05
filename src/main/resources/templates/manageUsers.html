@@ -46,27 +46,11 @@
                             <td th:text="${person.familyname}">Family Name</td>                           
 
                             <td class="actions">
-                                <a class="edit-btn"
-                                   th:href=
-                                   "@{/admin/users/edit/{id}
-                                   (id=${person.id})}">
-                                    Edit
-                                </a>
-
-                               <a class="delete-btn"
-                                th:href=
-                                "@{/admin/users/delete/{id}
-                                (id=${person.id})}"
-
-                                onclick="
-                                console.log(
-                                    'DELETE BUTTON CLICKED'
-                                );
-                                return confirm(
-                                    'Delete this user?'
-                                );">
-                                    Delete
-                                </a>
+                                <a class="edit-btn" th:href= "@{/admin/users/edit/{id} (id=${person.id})}">Edit</a>                                
+                                <a class="delete-btn" th:href= "@{/admin/users/delete/{id} (id=${person.id})}"
+                                    onclick=" console.log('DELETE BUTTON CLICKED');                                
+                                    return confirm('Delete this user?');">Delete</a>
+                                <!-- Add more actions as needed -->
                             </td>
                         </tr>
                     </tbody>
