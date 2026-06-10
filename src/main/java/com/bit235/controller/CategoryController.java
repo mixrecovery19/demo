@@ -15,9 +15,13 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+/// EXAMPLE OF HOW COMMEMTS AND CAN BE WRITTEN WITH A.I. Assistance. 
+// I have written the comments in a more "essay" style, as opposed to the more "code-like" comments in the other files. 
+// I have done this to show how comments can be written in different styles and formats, and to show that there is no one "right" way to write comments. The important thing is that the comments are clear, concise, and helpful to the reader. I have also included some comments that are more "meta" in nature, discussing the OOP and Spring Boot concepts that are being used in the code, as well as some of the design decisions that were made. I hope this provides a useful example of how comments can be written in a variety of styles and formats.
 /*
- * CategoryController
+ * 
+
+*CategoryController
  * ------------------
  * This class acts as the Controller layer in the MVC pattern.
  *
@@ -166,14 +170,9 @@ public class CategoryController {
                                 "user"
                         );
 
-        if (
-                category != null
-                && user != null
-        ) {
+        if (category != null && user != null){
 
-            category.setAuthor(
-                    user
-            );
+            category.setAuthor(user);            
 
             categoryService
                     .saveCategory(category);

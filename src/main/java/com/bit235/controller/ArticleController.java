@@ -218,7 +218,7 @@ public class ArticleController {
                         .getAttribute("user");
 
         model.addAttribute("user", user);
-// can wrote our method calls like this... or on the same line. I personally prefer on the one line where possible
+// can write our method calls like this... or on the same line. I personally prefer on the one line where possible
 // I do not know what industry standard is.
         model.addAttribute(
                 "articles",
