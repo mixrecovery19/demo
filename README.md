@@ -1,13 +1,16 @@
-# Assessment 2 - README
 
+# Bachelor of I.T. Spring Boot Application
+
+****Thanks for seeing this I also have developed and deployed a fitness application called CellFit ****
+****Available at both Apple App Store and Google Play Store links below *************************************
 ****YOU MAY NEED TO UPDATE THE DATABASE IN ORDER TO GET THE LOGIN WORKING****
 ****WHICH CAN BE ACHIEVED BY REDO ADMIN USER PASSWORD HASH AND ENSURE THAT H2-Console****
 ****UPDATES isAdmin = true*****
 
-Michael Kalaf Bachelor of I.T. Project... with messy, overly commented comments intentionally, 
+Michael Kalaf Bachelor of I.T. Project... developer of CellFit fitness application, available on both Apple App Store and Google Play Store entirely FREE... don't mind my messy, overly commented, book like comments they are intentional
 A - for me to learn, by writing it to myself
 B - to explain it to tutors/anybody else that may view it
-C - so it intentionally does not sound like just another A.I. produced readme. 
+C - so it intentionally does not sound like just another A.I. produced readme.
 
 So this readme is intentionally more article and less readme, intentionally.
 
@@ -41,6 +44,13 @@ For this project I also included a lot of seperated, long worded CSS files for s
 
 I also intentionally added additional Create Category, Create Article, Article, Category, in the Navbar to demonstrate different components, and how easy Spring Boot and Thymeleaf makes it to navigate through a project.
 
-Security is as per Assessment requirments and displays password hashing. 
+Security is as per Assessment requirments and displays password hashing.
 
 I also ensured there was a Admin and a Users to create the real world feel of a Users that can access their own articles and categories, where as the Admin can access, edit and delete all Articles and Categories. This is handled through a isAdmin and enforced through the session logic. A perfect example of session usage, invalidate on logout, and ensuring that redirect is applied so as to avoid duplicate form submissions through applying GET in place of POST operations.
+
+****Thank you for seeing this.***
+**** [www.cellfit.com.au](https://www.cellfit.com.au) ****
+****Available for Android: [CellFit on Google Play](https://play.google.com/store/apps/details?id=com.mixrecovery19.CellFit&pcampaignid=web_share)
+and Apple: [CellFit on the App Store](https://apps.apple.com/au/app/cellfit/id6758022051) ****
+***Free to install and use, with well priced subscriptions for the individual through to the professionals, gym owners and personal trainers.***
+***FREE CONTENT WORKOUTS AND PROMOS COMING SOON or DM/email [support@cellfit.com.au](mailto:support@cellfit.com.au) for PROMO CODES.***
